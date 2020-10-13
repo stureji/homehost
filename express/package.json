@@ -1,4 +1,11 @@
 {
+  "name": "homehost-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/stureji/homehost",
+  "author": "Erik Nord",
+  "license": "none",
+  "private": true,
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
