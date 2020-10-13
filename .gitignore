@@ -1,0 +1,9 @@
+# package managers
+node_modules/
+
+# enviroment
+.env
+
+# system files
+.DS_Store
+Thumbs.db
