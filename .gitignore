@@ -8,5 +8,8 @@ node_modules/
 .DS_Store
 Thumbs.db
 
+# compiled server ts
+express/target/
+
 #md files
 *.md

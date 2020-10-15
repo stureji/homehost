@@ -2,7 +2,7 @@
 
 /* Imports */
 
-const express = require('express');
+import express  from 'express';
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -28,7 +28,7 @@ endpoints.forEach(e => app.use(e));
 
 /* Root end point */
 
-app.get('/', (req, res) => {
+app.get('/', (req: any, res: any) => {
   console.log('HTTP GET  /');
   res.status(200).json({
     status: 200,

@@ -1,11 +1,11 @@
 'use strict';
 
 export default class Section {
-  #id;
-  #name;
-  #sort;
+  #id: number;
+  #name: string;
+  #sort: number;
 
-  constructor(id, name) {
+  constructor(id: number, name: string) {
     this.#id = id;
     this.#name = name;
     this.#sort = 1337;
@@ -19,11 +19,11 @@ export default class Section {
     return this.#name;
   }
 
-  set sort(value) {
+  set sort(value: number) {
     this.#sort = value;
   }
 
-  compareTo(other) {
+  compareTo(other: Section) {
     if(null === other) return 1;
     if(this === other) return 0;
     if(this.#sort < other.sort) {

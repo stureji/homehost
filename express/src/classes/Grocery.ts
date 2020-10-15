@@ -3,10 +3,10 @@
 import Section from './Section.js';
 
 export default class Grocery {
-  #name;
-  #section;
+  #name: string;
+  #section: Section;
 
-  constructor(name, section) {
+  constructor(name: string, section: Section) {
     this.#name = name;
     this.#section = section;
   }
@@ -19,7 +19,3 @@ export default class Grocery {
     return this.#section
   }
 }
-
-const carrot = new Grocery('Morötter', 'Grönsaker');
-const apples = new Grocery('Äpplen', 'Frukt');
-const cheese = new Grocery('Ost', 'Mejeri');

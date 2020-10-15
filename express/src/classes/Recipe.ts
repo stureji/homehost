@@ -1,14 +1,15 @@
 'use strict';
 
-import ShoppingList from "./ShoppingList.mjs";
+import Ingredient from "./Ingredient";
+import ShoppingList from "./ShoppingList";
 
 export default class Recipe {
-  #name;
-  #ingredientsArray;
-  #instructions;
-  #scale;
+  #name: string;
+  #ingredientsArray: Array<Ingredient>;
+  #instructions: string;
+  #scale: number;
 
-  constructor(nameOfRecipe, arrayWithIngredients, instructions) {
+  constructor(nameOfRecipe: string, arrayWithIngredients: Array<Ingredient>, instructions: string) {
     this.#name = nameOfRecipe;
     this.#ingredientsArray = arrayWithIngredients;
     this.#instructions = instructions;
@@ -27,11 +28,11 @@ export default class Recipe {
     return this.#instructions;
   }
 
-  get scale() {
+  get getScale() {
     return this.#scale;
   }
 
-  scale(newScale) {
+  scale(newScale: number) {
     this.#scale = newScale;
     this.#ingredientsArray.forEach( i => i.scale(this.#scale) );
   }

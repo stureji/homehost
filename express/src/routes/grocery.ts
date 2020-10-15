@@ -1,7 +1,7 @@
-const express = require('express');
+import express  from 'express';
 const app = module.exports = express();
 
-app.get('/section', (req, res) => {
+app.get('/grocery', (req: any, res: any) => {
   res.status(200).json({
     status: 200,
     message: "OK",

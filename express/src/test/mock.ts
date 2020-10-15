@@ -1,12 +1,6 @@
 'use strict';
 
-// const Grocery = require('../classes/Grocery.mjs');
-// const Ingredient = require('../classes/Ingredient.mjs');
-// const Recipe = require('../classes/Recipe.mjs');
-// const Section = require('../classes/Section');
-// const ShoppingList = require('../classes/ShoppingList.mjs');
-// const User = require('../classes/User.mjs');
-
+import test from 'ava';
 import Grocery from '../classes/Grocery';
 import Ingredient from '../classes/Ingredient';
 import Recipe from '../classes/Recipe';
@@ -61,12 +55,17 @@ const user1 = new User(1, 'User One');
 const user2 = new User(2, 'User Two');
 const userB = new User(3, 'Big User');
 
-const user1ShoppingList = new ShoppingList();
-const user2ShoppingList = new ShoppingList();
-const userBShppingList = new ShoppingList();
+const pastaCarbonaraShoppingList = pastaCarbonara.toShoppingList();
+const sandwichShoppingList = sandwich.toShoppingList();
 
 user1.addRecipeToList(pastaCarbonara);
 user2.addRecipeToList(sandwich);
 userB.addRecipeToList(pastaCarbonara);
 userB.addRecipeToList(sandwich);
 
+test('foo', t => {
+  console.log(baconI.toJson());
+  console.log(sandwichShoppingList.toJson());
+  console.log(user1.toJson());
+	t.pass();
+});

@@ -1,19 +1,21 @@
 'use strict';
 
-export default class Ingredient {
-  #amount0
-  #amountScaled
-  #unit
-  #grocery
+import Grocery from "./Grocery";
 
-  constructor(amount, unit, grocery) {
+export default class Ingredient {
+  #amount0: number;
+  #amountScaled: number;
+  #unit: string;
+  #grocery: Grocery;
+
+  constructor(amount: number, unit: string, grocery: Grocery) {
     this.#amount0 = amount;
     this.#unit = unit;
     this.#grocery = grocery;
     this.#amountScaled = this.#amount0;
   }
 
-  scale(value) {
+  scale(value: number) {
     this.#amountScaled = value * this.#amount0;
   }
 
