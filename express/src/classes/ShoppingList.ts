@@ -28,22 +28,45 @@ export default class ShoppingList {
     this.sort();
   }
 
-  sort() {
-    this.#listOfShoppingTuples.sort( (a, b) => a.grocery.section.compareTo(b.grocery.section) );
+  remove(grocery: Grocery): boolean {
+    const tupe = new ShoppingListEntry(grocery);
+    const search = this.#listOfShoppingTuples.find( x => x.grocery.name == grocery.name);
+    if(search != undefined) {
+      this.#listOfShoppingTuples.splice(this.#listOfShoppingTuples.indexOf(search), 1);
+      return true;
+    }
+    return false;
   }
 
-  merge(otherList: ShoppingList) {
-    if(null === otherList) return false;
-    if(this === otherList) return false;
+  sort() {
+    this.#listOfShoppingTuples.sort( (a, b) => {
+      const sectionPriorityComparison = a.grocery.section.compareTo(b.grocery.section)
+      if(sectionPriorityComparison === 0) {
+        if(a.grocery.name > b.grocery.name) {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else return sectionPriorityComparison;
+    });
+  }
+
+  merge(otherList: ShoppingList): ShoppingList | null {
+    if(null === otherList) return null;
+    if(this === otherList) return null;
+    const merged = new ShoppingList();
     if(this.#listOfShoppingTuples.length === 0) {
       if(otherList.length < 1) {
-        return false;
+        return null;
       } else {
-        this.#listOfShoppingTuples = otherList.list;
-        return true;
+        this.#listOfShoppingTuples == otherList.#listOfShoppingTuples;
+        return this;
       }
     }
-    otherList.list.forEach( tupe => this.#listOfShoppingTuples.push(tupe));
+    this.#listOfShoppingTuples.forEach(tupe => merged.#listOfShoppingTuples.push(tupe));
+    otherList.#listOfShoppingTuples.forEach(tupe => merged.#listOfShoppingTuples.push(tupe));
+    merged.sort();
+    return merged;
   }
 
   display() {

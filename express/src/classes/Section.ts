@@ -19,17 +19,31 @@ export default class Section {
     return this.#name;
   }
 
+  get sort() {
+    return this.#sort;
+  }
+
   set sort(value: number) {
     this.#sort = value;
   }
 
-  compareTo(other: Section) {
+  compareTo(other: Section): number {
     if(null === other) return 1;
     if(this === other) return 0;
-    if(this.#sort < other.sort) {
-      return 1;
+    if(this.#sort === other.#sort){
+      // equality gives 0
+      return 0;
     } else {
-      return -1;
+      // else, sort by section priority...
+      if(this.#sort > other.#sort) {
+        return 1
+      } else {
+        return -1;
+      }
     }
+  }
+
+  comparator(a: Section, b: Section): number {
+    return a.compareTo(b);
   }
 }
