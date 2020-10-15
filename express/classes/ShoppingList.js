@@ -3,8 +3,8 @@
 import Grocery from './Grocery';
 
 class ShoppingTuple {
-  #checked
-  #grocery
+  #checked;
+  #grocery;
 
   constructor(grocery) {
     this.#checked = false;
@@ -38,27 +38,45 @@ class ShoppingTuple {
 }
 
 export default class ShoppingList {
-  #groceryList;
+  #listOfShoppingTuples;
 
   constructor() {
-    this.#groceryList = new Array();
+    this.#listOfShoppingTuples = new Array();
   }
 
   get list() {
-    return this.#groceryList;
+    return this.#listOfShoppingTuples;
   }
 
-  push(grocery) {
-    const name = grocery.name;
-    const tupe = new ShoppingTuple(name);
-    this.#groceryList.push(tupe);
+  add(grocery) {
+    const tupe = new ShoppingTuple(name, grocery);
+    this.#listOfShoppingTuples.push(tupe);
+    this.sort();
+  }
+
+  sort() {
+    this.#listOfShoppingTuples.sort( (a, b) => a.grocery.compareTo(b.grocery) );
+  }
+
+  merge(otherList) {
+    if(null === otherList) return false;
+    if(this === otherList) return false;
+    if(this.#listOfShoppingTuples.size === 0) {
+      if(otherList.size < 1) {
+        return false;
+      } else {
+        this.#listOfShoppingTuples = otherList;
+        return true;
+      }
+    }
+    otherList.list.forEach( tupe => this.#listOfShoppingTuples.push(tupe.grocery));
   }
 
   display() {
-    return this.#groceryList.map( tupe => tupe.display()).join('\n');
+    return this.#listOfShoppingTuples.map( tupe => tupe.display()).join('\n');
   }
 
   toJson() {
-    return JSON.parse( '{"list:' + JSON.stringify(this.#groceryList.map( tupe => tupe.toJson() )) + "}");
+    return JSON.parse( '{"list:' + JSON.stringify(this.#listOfShoppingTuples.map( tupe => tupe.toJson() )) + "}");
   }
 }
