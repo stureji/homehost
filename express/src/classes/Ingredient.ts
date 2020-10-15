@@ -33,7 +33,10 @@ export default class Ingredient {
   }
 
   display() {
-    return this.#amountScaled + ' ' + this.#unit + ' ' + this.#grocery.name;
+    if(this.#amountScaled > 0) {
+      return this.#amountScaled + ' ' + this.#unit + ' ' + this.#grocery.name;
+    }
+    return this.#grocery.name + ' ' + this.#unit;
   }
 
   toJson() {

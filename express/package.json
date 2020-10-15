@@ -28,7 +28,7 @@
   },
   "ava": {
     "files": [
-      "target/test/**/*"
+      "dist/test/**/*"
     ]
   }
 }

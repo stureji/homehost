@@ -41,6 +41,13 @@ test('Ingredient: display()', t => {
   t.is(i.display(), scaledAmount + ' ' + passedUnit + ' ' + passedName, 'display should represent content');
 });
 
+test('Ingredient: display() when amount is zero', t => {
+  const oo = new Ingredient(0, 'for frying', new Grocery('Olive Oil', vegtableSection));
+  const salt = new Ingredient(0, 'to taste', new Grocery('Salt', vegtableSection));
+  t.is(oo.display(), 'Olive Oil for frying', 'different display when amount is zero')
+  t.is(salt.display(), 'Salt to taste', 'different display when amount is zero')
+})
+
 test('Ingredient: toJson()', t => {
   const passedAmount = 5;
   const passedUnit = 'pices';
