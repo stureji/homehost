@@ -2,6 +2,7 @@
 
 import Ingredient from "./Ingredient";
 import ShoppingList from "./ShoppingList";
+import ShoppingListEntry from "./ShoppingListEntry";
 
 export default class Recipe {
   #name: string;
@@ -39,7 +40,8 @@ export default class Recipe {
 
   toShoppingList() {
     const list = new ShoppingList();
-    this.#ingredientsArray.forEach( i => list.add(i.grocery) );
+    this.#ingredientsArray.forEach( i => list.list.push(new ShoppingListEntry(i.grocery)) );
+    list.sort();
     return list;
   }
 

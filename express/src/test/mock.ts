@@ -5,7 +5,6 @@ import Grocery from '../classes/Grocery';
 import Ingredient from '../classes/Ingredient';
 import Recipe from '../classes/Recipe';
 import Section from '../classes/Section';
-import ShoppingList from '../classes/ShoppingList';
 import User from '../classes/User';
 
 /* All this should be in DB and should be fetched in production */
@@ -63,7 +62,7 @@ user2.addRecipeToList(sandwich);
 userB.addRecipeToList(pastaCarbonara);
 userB.addRecipeToList(sandwich);
 
-test('foo', t => {
+test('mock data is read and jsonified', t => {
   // These will fail if something was not read expectedly...
   t.truthy(user1.toJson());
   t.truthy(user2.toJson());

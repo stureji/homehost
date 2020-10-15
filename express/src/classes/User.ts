@@ -22,8 +22,17 @@ export default class User {
     return this.#username;
   }
 
-  addRecipeToList(recipe: Recipe) {
-    this.#shoppingList.merge(recipe.toShoppingList());
+  get shoppinglist() {
+    return this.#shoppingList;
+  }
+
+  addRecipeToList(recipe: Recipe): boolean {
+    const merge = this.#shoppingList.merge(recipe.toShoppingList());
+    if(merge != null) {
+      this.#shoppingList = merge;
+      return true;
+    }
+    return false;
   }
 
   clearCheckedItems() {
@@ -35,7 +44,7 @@ export default class User {
   }
 
   display() {
-    return '';
+    return 'User: ' + this.#username;
   }
 
   toJson() {

@@ -28,9 +28,25 @@ export default class ShoppingList {
     this.sort();
   }
 
-  remove(grocery: Grocery): boolean {
-    const tupe = new ShoppingListEntry(grocery);
+  find(grocery: Grocery): ShoppingListEntry | undefined {
     const search = this.#listOfShoppingTuples.find( x => x.grocery.name == grocery.name);
+    if(search != undefined) {
+      return this.#listOfShoppingTuples[this.#listOfShoppingTuples.indexOf(search)];
+    } else {
+      return undefined;
+    }
+  }
+
+  get(grocery: Grocery): ShoppingListEntry | undefined {
+    const search = this.find(grocery);
+    if(search != undefined) {
+      return search;
+    }
+    return undefined;
+  }
+
+  remove(grocery: Grocery): boolean {
+    const search = this.find(grocery);
     if(search != undefined) {
       this.#listOfShoppingTuples.splice(this.#listOfShoppingTuples.indexOf(search), 1);
       return true;
@@ -51,16 +67,13 @@ export default class ShoppingList {
     });
   }
 
-  merge(otherList: ShoppingList): ShoppingList | null {
-    if(null === otherList) return null;
-    if(this === otherList) return null;
+  merge(otherList: ShoppingList): ShoppingList | undefined {
+    if(null === otherList) return undefined;
+    if(this === otherList) return undefined;
     const merged = new ShoppingList();
     if(this.#listOfShoppingTuples.length === 0) {
       if(otherList.length < 1) {
-        return null;
-      } else {
-        this.#listOfShoppingTuples == otherList.#listOfShoppingTuples;
-        return this;
+        return undefined;
       }
     }
     this.#listOfShoppingTuples.forEach(tupe => merged.#listOfShoppingTuples.push(tupe));

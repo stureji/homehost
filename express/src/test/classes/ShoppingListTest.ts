@@ -56,10 +56,10 @@ test('ShoppingList: merge() two differet lists', t => {
   list2.add(greve);
   const merged = list1.merge(list2);
   const degrem = list2.merge(list1);
-  t.not(merged, null, 'merge should be successful!');
-  t.not(degrem, null, 'merge should be successful!');
-  if(merged == null) { t.fail("merge is null!"); return;}
-  if(degrem == null) { t.fail("merge is null!"); return;}
+  t.not(merged, undefined, 'merge should be successful!');
+  t.not(degrem, undefined, 'merge should be successful!');
+  if(merged == undefined) { t.fail("merge is undefined!"); return;}
+  if(degrem == undefined) { t.fail("merge is undefined!"); return;}
   t.is(merged.length, 5, 'expected length after merging');
   t.is(merged.list.map(x => x.grocery.name[0]).join(''), 'STGPP', 'expected section ordering after merge');
   t.is(merged.list.map(x => x.grocery.section.id).join(''), '24777', 'expected section ordering after merge');
@@ -82,10 +82,10 @@ test('ShoppingList: merge() two equal lists', t => {
   list2.add(parmesan);
   const merged = list1.merge(list2);
   const degrem = list2.merge(list1);
-  t.not(merged, null, 'merge should be successful!');
-  t.not(degrem, null, 'merge should be successful!');
-  if(merged == null) { t.fail("merge is null!"); return;}
-  if(degrem == null) { t.fail("merge is null!"); return;}
+  t.not(merged, undefined, 'merge should be successful!');
+  t.not(degrem, undefined, 'merge should be successful!');
+  if(merged == undefined) { t.fail("merge is undefined!"); return;}
+  if(degrem == undefined) { t.fail("merge is undefined!"); return;}
   t.is(merged.length, 6, 'expected length after merging');
   t.is(merged.list.map(x => x.grocery.name[0]).join(''), 'SSTTPP', 'expected section ordering after merge');
   t.is(merged.list.map(x => x.grocery.section.id).join(''), '224477', 'expected section ordering after merge');
@@ -98,13 +98,13 @@ test('ShoppingList: merge() two equal lists', t => {
   t.deepEqual(merged, degrem, 'order not important');
 });
 
-test('ShoppingList: merge() one list is null', t => {
+test('ShoppingList: merge() one list is undefined', t => {
   const list1 = new ShoppingList();
   const list2 = new ShoppingList();
   const merged = list1.merge(list2);
   const degrem = list2.merge(list1);
-  t.is(merged, null, 'merge should fail!');
-  t.is(degrem, null, 'merge should fail!');
+  t.is(merged, undefined, 'merge should fail!');
+  t.is(degrem, undefined, 'merge should fail!');
   t.deepEqual(merged, degrem, 'order not important');
 });
 
@@ -115,10 +115,10 @@ test('ShoppingList: merge() one list is empty', t => {
   list1.add(tomatoes);
   const merged = list1.merge(list2);
   const degrem = list2.merge(list1);
-  t.not(merged, null, 'merge should be successful!');
-  t.not(degrem, null, 'merge should be successful!');
-  if(merged == null) { t.fail("merge is null!"); return;}
-  if(degrem == null) { t.fail("merge is null!"); return;}
+  t.not(merged, undefined, 'merge should be successful!');
+  t.not(degrem, undefined, 'merge should be successful!');
+  if(merged == undefined) { t.fail("merge is undefined!"); return;}
+  if(degrem == undefined) { t.fail("merge is undefined!"); return;}
   t.is(merged.length, 2, 'expected length after merging');
   t.is(merged.list.map(x => x.grocery.name[0]).join(''), 'ST', 'expected section ordering after merge');
   t.is(merged.list.map(x => x.grocery.section.id).join(''), '24', 'expected section ordering after merge');
