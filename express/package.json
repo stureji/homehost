@@ -6,9 +6,15 @@
   "author": "Erik Nord",
   "license": "none",
   "private": true,
+	"scripts": {
+		"test": "ava"
+	},
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "ava": "^3.13.0"
   }
 }
