@@ -1,14 +1,16 @@
 {
   "name": "homehost-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./target/server.js",
   "repository": "https://github.com/stureji/homehost",
   "author": "Erik Nord",
   "license": "none",
   "private": true,
   "scripts": {
     "compile": "tsc",
-    "test": "tsc && ava"
+    "test": "tsc && ava",
+    "serve": "nodemon",
+    "start": "node ./target/server.js"
   },
   "dependencies": {
     "@types/express": "^4.17.8",
