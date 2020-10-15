@@ -34,6 +34,10 @@ export default class User {
     this.#shoppingList = new ShoppingList();
   }
 
+  display() {
+    return '';
+  }
+
   toJson() {
     return JSON.parse('{"id":' + this.#id + ',"shoppinglist":' + JSON.stringify(this.#shoppingList.toJson()) + '}');
   }
