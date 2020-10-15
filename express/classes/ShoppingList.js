@@ -31,6 +31,10 @@ class ShoppingTuple {
     }
     return checkmark + this.#grocery;
   }
+
+  toJson() {
+    return JSON.parse('{"checked":' + this.#checked + ',"grocery":"' + this.#grocery.name + '"}');
+  }
 }
 
 export default class ShoppingList {
@@ -52,5 +56,9 @@ export default class ShoppingList {
 
   display() {
     return this.#groceryList.map( tupe => tupe.display()).join('\n');
+  }
+
+  toJson() {
+    return JSON.parse( '{"list:' + JSON.stringify(this.#groceryList.map( tupe => tupe.toJson() )) + "}");
   }
 }
