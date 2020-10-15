@@ -26,7 +26,7 @@ export default class Ingredient {
   }
 
   get grocery() {
-    return this.#grocery.name;
+    return this.#grocery;
   }
 
   display() {
