@@ -9,7 +9,7 @@ node_modules/
 Thumbs.db
 
 # compiled server ts
-express/target/
+dist/
 
 #md files
 *.md
