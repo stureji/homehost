@@ -9,7 +9,9 @@
   "scripts": {
     "clean": "rimraf dist",
     "compile": "tsc",
+    "clean-compile": "rimraf dist && tsc",
     "test": "tsc && ava",
+    "clean-test": "rimraf dist && tsc && ava",
     "serve": "nodemon",
     "start": "node ./target/server.js"
   },
