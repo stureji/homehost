@@ -1,6 +1,6 @@
 'use strict';
 
-import ShoppingList from "./ShoppingList";
+import ShoppingList from "./ShoppingList.mjs";
 
 export default class Recipe {
   #name;

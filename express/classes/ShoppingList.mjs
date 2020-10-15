@@ -1,6 +1,6 @@
 'use strict';
 
-import Grocery from './Grocery';
+import Grocery from './Grocery.mjs';
 
 class ShoppingTuple {
   #checked;
