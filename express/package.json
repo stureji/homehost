@@ -1,7 +1,7 @@
 {
   "name": "homehost-server",
   "version": "1.0.0",
-  "main": "./target/server.js",
+  "main": "./dist/server.js",
   "repository": "https://github.com/stureji/homehost",
   "author": "Erik Nord",
   "license": "none",
