@@ -1,5 +1,7 @@
 'use strict';
 
+import ShoppingList from "./ShoppingList";
+
 export default class Recipe {
   #name;
   #ingredientsArray;
@@ -32,6 +34,12 @@ export default class Recipe {
   scale(newScale) {
     this.#scale = newScale;
     this.#ingredientsArray.forEach( i => i.scale(this.#scale) );
+  }
+
+  toShoppingList() {
+    const list = new ShoppingList();
+    this.#ingredientsArray.forEach( i => list.add(i.grocery) );
+    return list;
   }
 
   toJson() {
