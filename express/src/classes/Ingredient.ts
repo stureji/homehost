@@ -17,6 +17,7 @@ export default class Ingredient {
 
   scale(value: number) {
     this.#amountScaled = value * this.#amount0;
+    return this.#amountScaled;
   }
 
   get amount() {

@@ -1,13 +1,13 @@
 'use strict';
 
 import Grocery from './Grocery';
-import ShoppingTuple from './ShoppingTuple';
+import ShoppingListEntry from './ShoppingListEntry';
 
 export default class ShoppingList {
-  #listOfShoppingTuples: Array<ShoppingTuple>;
+  #listOfShoppingTuples: Array<ShoppingListEntry>;
 
   constructor() {
-    this.#listOfShoppingTuples = new Array<ShoppingTuple>();
+    this.#listOfShoppingTuples = new Array<ShoppingListEntry>();
   }
 
   get list() {
@@ -23,7 +23,7 @@ export default class ShoppingList {
   }
 
   add(grocery: Grocery) {
-    const tupe = new ShoppingTuple(grocery);
+    const tupe = new ShoppingListEntry(grocery);
     this.#listOfShoppingTuples.push(tupe);
     this.sort();
   }

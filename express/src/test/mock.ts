@@ -64,8 +64,9 @@ userB.addRecipeToList(pastaCarbonara);
 userB.addRecipeToList(sandwich);
 
 test('foo', t => {
-  console.log(baconI.toJson());
-  console.log(sandwichShoppingList.toJson());
-  console.log(user1.toJson());
+  // These will fail if something was not read expectedly...
+  t.truthy(user1.toJson());
+  t.truthy(user2.toJson());
+  t.truthy(userB.toJson());
 	t.pass();
 });

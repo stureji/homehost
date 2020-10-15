@@ -2,7 +2,7 @@
 
 import Grocery from './Grocery';
 
-export default class ShoppingTuple {
+export default class ShoppingListEntry {
   #checked: boolean;
   #grocery: Grocery;
 
@@ -29,7 +29,7 @@ export default class ShoppingTuple {
     if(this.#checked) {
       checkmark = '[x]: ';
     }
-    return checkmark + this.#grocery;
+    return checkmark + this.#grocery.name;
   }
 
   toJson() {
