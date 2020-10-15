@@ -1,29 +1,28 @@
 'use strict';
-
+/* Imports */
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 require('dotenv').config();
-
-const User = require('./classes/User.js');
-
-const mock_users = [new User(0, "user0", 0), new User(1, "user1", 0)];
-
+/* Middleware */
 const app = express();
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// TODO: Implement endpoints
-
+/* Define end points */
+const endpoints = Array();
+endpoints.push(require('./routes/grocery'));
+endpoints.push(require('./routes/recipe'));
+endpoints.push(require('./routes/section'));
+endpoints.push(require('./routes/user'));
+/* Use the defined endpoints */
+endpoints.forEach(e => app.use(e));
+/* Root end point */
 app.get('/', (req, res) => {
   console.log('HTTP GET  /');
   res.status(200).json({
     status: 200,
-    message: "OK",
-    data: mock_users
+    message: "OK"
   })
 })
 
