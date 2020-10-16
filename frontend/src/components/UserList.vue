@@ -1,11 +1,16 @@
 <template>
   <div class="flex-container" v-if="!loading && data && data.length">
-    <div class="profile" v-for="user of data" :key="user.id">
-      {{user.username}}
+    <a class="profile" v-for="user of data" :key="user.id" :href="'/user/' + user.id">
+      <span class="username">{{user.username}}</span>
       <div class="profile-picture">
-
       </div>
-    </div>
+    </a>
+  </div>
+  <div v-if="loading">
+    <code class="info fade-in">Loading user profiles....</code>
+  </div>
+  <div v-if="error">
+    <code class="error fade-in">An error occured!</code>
   </div>
 </template>
 
@@ -65,13 +70,20 @@ export default {
 }
 .profile {
   background-color: #333;
-  color: #FFF;
   border-radius: 10px;
-  text-align: center;
   margin: 10px;
   width: 180px;
-  line-height: 30px;
   height: 180px;
+  cursor: pointer;
+}
+.profile > span {
+  line-height: 30px;
+  font-size: 1rem;
+  color: #FFF;
+  text-align: left;
+  font-weight: 600;
+  padding: 0 1rem;
+  white-space: nowrap;
 }
 .profile:hover {
   background-color: #666;
