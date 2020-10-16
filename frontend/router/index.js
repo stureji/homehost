@@ -25,10 +25,10 @@ const routes = [
     name: 'Not Found',
     component: NotFound
   },
-  // {
-  //   path: '*',
-  //   redirect: '/404'
-  // }
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404'
+  }
 ];
 
 const router = createRouter({
