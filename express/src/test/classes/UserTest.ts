@@ -66,5 +66,6 @@ test('UserTest: toJson()', t => {
   user.addRecipeToList(recipe);
   const json = user.toJson();
   t.is(json.id, 0, 'should match userId');
+  t.is(json.username, 'test', 'should match username');
 });
 

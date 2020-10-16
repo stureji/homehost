@@ -48,6 +48,6 @@ export default class User {
   }
 
   toJson() {
-    return JSON.parse('{"id":' + this.#id + ',"shoppinglist":' + JSON.stringify(this.#shoppingList.toJson()) + '}');
+    return JSON.parse('{"id":' + this.#id + ',"username":"' + this.#username + '","shoppinglist":' + JSON.stringify(this.#shoppingList.toJson()) + '}');
   }
 }
