@@ -19,7 +19,7 @@ export default {
 
     const fetchData = () => {
       loading.value = true;
-      return fetch('http://localhost:4000/user', {
+      return fetch('http://192.168.1.18:4000/user', {
         method: 'get',
         headers: {
           "content-type": "application/json"
@@ -58,22 +58,32 @@ export default {
 .flex-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 200px;
-  background-color:lightskyblue;
+  background-color: inherit;
   flex-wrap: wrap;
 }
 .profile {
-  background-color: hotpink;
+  background-color: #333;
+  color: #FFF;
+  border-radius: 10px;
   text-align: center;
   margin: 10px;
   width: 180px;
-  line-height: 2.5rem;
+  line-height: 30px;
   height: 180px;
 }
+.profile:hover {
+  background-color: #666;
+}
+.profile:hover .profile-picture, .profile.hover .profile-picture { background-color: #999; }
 .profile-picture {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
-  background-size: 180px;
-  width: 180px;
-  height: calc(100% - 2.5rem);
+  background-image: url('../assets/blue.png');
+  background-size: 100%;
+  background-color: #777;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  border-radius: 135px;
 }
 </style>

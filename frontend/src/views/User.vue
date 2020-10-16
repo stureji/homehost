@@ -1,15 +1,10 @@
 <template>
-  <UserList />
+  <h1>This is User view</h1>
 </template>
 
 <script>
-import UserList from '../components/UserList';
 export default {
-  setup() {
-    return {
-      UserList
-    }
-  }
+
 }
 </script>
 

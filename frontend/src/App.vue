@@ -35,10 +35,10 @@ export default {
 nav {
   padding: 1rem 0px;
   background-color: #333;
-  color: #EEE;
+  color: #FFF;
 }
 nav a {
-  color: #EEE;
+  color: #FFF;
   text-decoration: none;
 }
 nav ul {
