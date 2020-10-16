@@ -24,7 +24,7 @@ export default {
 
     const fetchData = () => {
       loading.value = true;
-      return fetch('http://192.168.1.18:4000/user', {
+      return fetch('http://192.168.1.200:4000/user', {
         method: 'get',
         headers: {
           "content-type": "application/json"
