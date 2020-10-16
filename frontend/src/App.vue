@@ -54,4 +54,7 @@ nav ul li:hover {
   display: inline;
   background-color: #444;
 }
+a {
+  text-decoration: none;
+}
 </style>
