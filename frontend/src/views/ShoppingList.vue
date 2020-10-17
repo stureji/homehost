@@ -1,5 +1,5 @@
 <template>
-  <h1>This is the ShoppingList view</h1>
+  <h1>This is ShoppingList view</h1>
 </template>
 
 <script>
