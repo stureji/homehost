@@ -1,10 +1,18 @@
 <template>
-  <h1>This is User view</h1>
+  <h1>This is User view for logged in user: {{ currentUser }}</h1>
 </template>
 
 <script>
-export default {
+import { userStore } from '../stores/UserStore';
 
+export default {
+  setup() {
+    const currentUser = userStore.getState();
+
+    return {
+      currentUser: currentUser
+    }
+  }
 }
 </script>
 

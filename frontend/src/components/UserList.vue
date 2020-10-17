@@ -1,6 +1,6 @@
 <template>
   <div class="flex-container" v-if="!loading && data && data.length">
-    <a class="profile" v-for="user of data" :key="user.id" :href="'/user/' + user.id">
+    <a class="profile" v-for="user of data" :key="user.id" :href="'/login/' + user.id">
       <span class="username">{{user.username}}</span>
       <div class="profile-picture">
       </div>
@@ -24,13 +24,12 @@ export default {
 
     const fetchData = () => {
       loading.value = true;
-      console.log(process.env.VUE_APP_API);
       return fetch(process.env.VUE_APP_API + '/user', {
         method: 'get',
         headers: {
           "content-type": "application/json"
         }
-      }).then( (res) => {
+      }).then((res) => {
         if(!res.ok) {
           const e = new Error(res.statusText);
           e.json = res.json();

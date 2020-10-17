@@ -3,9 +3,9 @@
     <nav>
       <ul>
         >
-        <router-link to="/"><li>Home</li></router-link>
-        <router-link to="/user"><li>User</li></router-link>
-        <router-link to="/shoplist"><li>Shopping List</li></router-link>
+        <router-link to="/" v-if="!isLoggedIn"><li>Login</li></router-link>
+        <router-link to="/user" v-if="isLoggedIn"><li>User</li></router-link>
+        <router-link to="/shoplist" v-if="isLoggedIn"><li>Shopping List</li></router-link>
       </ul>
     </nav>
   <router-view />
@@ -13,10 +13,13 @@
 </template>
 
 <script>
+import { userStore } from './stores/UserStore';
+
 export default {
   setup() {
+    const isLoggedIn = userStore.isLoggedIn();
     return {
-
+      isLoggedIn: isLoggedIn
     }
   }
 }
@@ -32,7 +35,7 @@ export default {
   margin: 0 auto;
   width: 80vw;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   body {
     margin: 0;
   }
