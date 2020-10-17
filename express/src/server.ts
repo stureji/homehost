@@ -28,13 +28,21 @@ endpoints.forEach(e => app.use(e));
 
 /* Root end point */
 
-app.get('/', (req: any, res: any) => {
-  console.log('HTTP GET  /');
+app.get('/', (req:any, res:any) => {
+  console.log('HTTP GET   /')
+  res.status(404).json({
+    status: 404,
+    message: "NOT_FOUND"
+  });
+});
+
+app.get('/api', (req: any, res: any) => {
+  console.log('HTTP GET   /api');
   res.status(200).json({
     status: 200,
     message: "OK"
-  })
-})
+  });
+});
 
 app.listen(4000, "0.0.0.0", () => {
   console.log('Server listening on port 4000');

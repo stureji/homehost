@@ -7,10 +7,11 @@ const users = new Array<User>(sverker, lina);
 
 const app = module.exports = express();
 
-app.get('/user', (req: any, res: any) => {
+app.get('/api/user', (req: any, res: any) => {
+  console.log('HTTP GET   /api/user');
   res.status(200).json({
     status: 200,
     message: "OK",
     data: users.map(u => u.toJson())
-  })
+  });
 });
