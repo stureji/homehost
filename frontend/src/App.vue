@@ -33,6 +33,9 @@ export default {
   width: 80vw;
 }
 @media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+  }
   #app {
     width: 100vw;
   }
