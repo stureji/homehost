@@ -24,7 +24,8 @@ export default {
 
     const fetchData = () => {
       loading.value = true;
-      return fetch('http://192.168.1.200/api/user', {
+      console.log(process.env.VUE_APP_API);
+      return fetch(process.env.VUE_APP_API + '/user', {
         method: 'get',
         headers: {
           "content-type": "application/json"

@@ -32,6 +32,11 @@ export default {
   margin: 0 auto;
   width: 80vw;
 }
+@media only screen and (max-width: 600px) {
+  #app {
+    width: 100vw;
+  }
+}
 nav {
   padding: 1rem 0px;
   background-color: #333;
