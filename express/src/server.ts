@@ -44,6 +44,6 @@ app.get('/api', (req: any, res: any) => {
   });
 });
 
-app.listen(4000, "0.0.0.0", () => {
+app.listen(4000, () => {
   console.log('Server listening on port 4000');
 })
