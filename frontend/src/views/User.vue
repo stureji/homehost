@@ -1,15 +1,18 @@
 <template>
-  <h1>This is User view for logged in user: {{ currentUser }}</h1>
+  <NavBar />
+  {{ currentUser }}
 </template>
 
 <script>
+import NavBar from '../components/NavBar';
 import { userStore } from '../stores/UserStore';
 
 export default {
   setup() {
-    const currentUser = userStore.getState();
+    const currentUser = userStore.currentUser();
 
     return {
+      NavBar,
       currentUser: currentUser
     }
   }

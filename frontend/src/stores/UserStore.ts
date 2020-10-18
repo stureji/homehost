@@ -9,12 +9,12 @@ class UserStore extends Store<User> {
   protected data(): User {
     return {
       id: undefined,
-      username: 'user not logged in'
+      username: 'no user'
     };
   }
 
   login(user: User): boolean {
-    if(!this.isLoggedIn()) {
+    if(!this.isLogged()) {
       this.state.id = user.id;
       this.state.username = user.username;
       return true;
@@ -22,12 +22,14 @@ class UserStore extends Store<User> {
     return false;
   }
 
-  isLoggedIn(): boolean {
-    return this.state.id != undefined && this.state.username != 'user not logged in';
+  isLogged(): boolean {
+    return this.state.id != undefined && this.state.username != 'no user';
   }
 
-  currentUser(): User {
-    return this.getState();
+  currentUser(): String | undefined {
+    if(this.isLogged()) {
+      return this.getState().username;
+    }
   }
 }
 
