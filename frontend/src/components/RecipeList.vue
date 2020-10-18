@@ -1,7 +1,10 @@
 <template>
-  <button @click="sortData()"> sortData </button>
-  <div class="flex-container" v-if="!loading && data && data.length">
-    <div class="flex-item" v-for="recipe in data" :key="recipe.id">
+  <div id="search-container">
+    <input id="search-bar" type="text" v-model="searchInput"
+    @input="reactiveInput(searchInput)" placeholder="Sök efter recept" />
+  </div>
+  <div class="flex-container" v-if="!loading && stage && stage.length">
+    <div class="flex-item" v-for="recipe in stage" :key="recipe.id">
       <div class="recipe-image">
         {{ recipe.id }}
       </div>
@@ -13,7 +16,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { readonly, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import NavBar from '@/components/NavBar';
 
@@ -21,6 +24,8 @@ export default {
   setup() {
     const router = useRouter();
     const data = ref(null);
+    const searchResult = ref(null);
+    const stage = ref(null);
     const loading = ref(false);
     const error = ref(null);
 
@@ -42,6 +47,7 @@ export default {
         return res.json()
       }).then((json) => {
         data.value = json.data;
+        stage.value = json.data;
       }).catch((e) => {
         error.value = e;
         router.push('/');
@@ -50,12 +56,19 @@ export default {
       });
     }
 
-    const nukeData = () => {
-      data.value = [];
+    const sortData = () => {
+      data.value.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    const sortData = () => {
-      data.value = data.value.sort((a, b) => a.id - b.id)
+    const reactiveInput = (input) => {
+      console.log(input)
+      if(input == '') {
+        searchResult.value = [];
+        stage.value = data.value;
+      } else {
+        searchResult.value = readonly(data).value.filter( r => r.name.toLowerCase().includes(input))
+        stage.value = searchResult.value;
+      }
     }
 
     onMounted(() => {
@@ -64,11 +77,12 @@ export default {
 
     return {
       NavBar,
-      data,
+      stage,
       loading,
       error,
-      nukeData,
-      sortData
+      sortData,
+      reactiveInput,
+      searchInput: ''
     }
   }
 }
@@ -85,7 +99,7 @@ export default {
   width: 100%;
 }
 .flex-item {
-  margin: 6px 0;
+  margin: 2px 2vw;
   width: 100%;
   height: 6rem;
   border-style: solid;
@@ -102,5 +116,22 @@ export default {
   width: 80%;
   height: 6rem;
   line-height: 6rem;
+}
+#search-container {
+  background-color: grey;
+  height: 4rem;
+  margin-bottom: 0;
+}
+#search-container > input {
+  margin: 0.2rem;
+  height: 3.6rem;
+  width: calc(100% - 0.4rem);
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+#search-container > input::placeholder {
+  font-size: 1.5rem;
 }
 </style>
