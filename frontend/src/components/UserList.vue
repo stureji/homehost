@@ -17,8 +17,10 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
   setup() {
+    const router = useRouter();
     const data = ref(null);
     const loading = ref(true);
     const error = ref(null);
@@ -42,6 +44,7 @@ export default {
         data.value = json.data;
       }).catch((e) => {
         error.value = e;
+        router.push('/500');
       }).then(() => {
         loading.value = false;
       })
