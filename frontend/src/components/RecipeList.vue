@@ -4,7 +4,7 @@
     @input="reactiveInput(searchInput)" placeholder="Sök efter recept" />
   </div>
   <div class="flex-container" v-if="!loading && stage && stage.length">
-    <div class="flex-item" v-for="recipe in stage" :key="recipe.id">
+    <div @click="routeTo(recipe.id)" class="flex-item" v-for="recipe in stage" :key="recipe.id">
       <div class="recipe-image">
         {{ recipe.id }}
       </div>
@@ -71,6 +71,10 @@ export default {
       }
     }
 
+    const routeTo = (key) => {
+      router.push('/recipe/' + key)
+    }
+
     onMounted(() => {
       fetchData();
     });
@@ -82,7 +86,8 @@ export default {
       error,
       sortData,
       reactiveInput,
-      searchInput: ''
+      searchInput: '',
+      routeTo
     }
   }
 }

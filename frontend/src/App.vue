@@ -38,7 +38,7 @@ body {
 a {
   text-decoration: none;
 }
-.page-content {
+#page-content {
   padding-left: 1rem;
 }
 </style>
