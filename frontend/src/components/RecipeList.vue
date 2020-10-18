@@ -32,7 +32,7 @@ export default {
     const fetchData = () => {
       loading.value = true;
 
-      return fetch(process.env.VUE_APP_API + '/recipe', {
+      return fetch(process.env.VUE_APP_API + '/recipe/all', {
         method: 'get',
         headers: {
           "content-type": "application/json"
