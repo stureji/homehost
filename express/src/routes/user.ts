@@ -8,7 +8,7 @@ const users = new Array<User>(sverker, lina);
 const app = module.exports = express();
 
 app.get('/api/user', (req: any, res: any) => {
-  console.log('HTTP GET    /api/user');
+  console.log('HTTP GET   /api/user');
   res.status(200).json({
     status: 200,
     message: "OK",
@@ -17,7 +17,7 @@ app.get('/api/user', (req: any, res: any) => {
 });
 
 app.post('/api/user/login', (req: any, res: any) => {
-  console.log('HTTP POST   /api/user/login');
+  console.log('HTTP POST  /api/user/login');
   let status = 401;
   let message = "UNAUTHORIZED";
   let data = JSON.stringify({});

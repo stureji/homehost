@@ -26,7 +26,7 @@ test('UserTest: construction', t => {
 
 test('UserTest: addRecipeToList()', t => {
   const user = new User(0, 'test');
-  const recipe = new Recipe('Smörgås', sandwichIngredients, sandwichInstructions);
+  const recipe = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
   const resList = recipe.toShoppingList();
   user.addRecipeToList(recipe);
   t.is(user.shoppinglist.length, resList.length, 'expect same length');
@@ -35,7 +35,7 @@ test('UserTest: addRecipeToList()', t => {
 
 test('UserTest: clearCheckedItems()', t => {
   const user = new User(0, 'test');
-  const recipe = new Recipe('Smörgås', sandwichIngredients, sandwichInstructions);
+  const recipe = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
   user.addRecipeToList(recipe);
   t.is(user.shoppinglist.length, 2, 'should not be empty yet');
   const entry = user.shoppinglist.get(bread);
@@ -48,7 +48,7 @@ test('UserTest: clearCheckedItems()', t => {
 
 test('UserTest: clearList()', t => {
   const user = new User(0, 'test');
-  const recipe = new Recipe('Smörgås', sandwichIngredients, sandwichInstructions);
+  const recipe = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
   user.addRecipeToList(recipe);
   t.is(user.shoppinglist.length, 2, 'should not be empty yet');
   user.clearList()
@@ -62,7 +62,7 @@ test('UserTest: display()', t => {
 
 test('UserTest: toJson()', t => {
   const user = new User(0, 'test');
-  const recipe = new Recipe('Smörgås', sandwichIngredients, sandwichInstructions);
+  const recipe = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
   user.addRecipeToList(recipe);
   const json = user.toJson();
   t.is(json.id, 0, 'should match userId');

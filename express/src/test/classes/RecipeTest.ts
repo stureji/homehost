@@ -47,7 +47,8 @@ const pastaCarbonaraInstructions = "Sätt på pastavattnet och salta rikligt. Pa
 const sandwichInstructions = "Skiva bröded i skivor. Sätt på osten och sedan tomaten på det skivade brödet för varje macka du önskar.";
 
 test('RecipeTest: construction', t => {
-  const recipe = new Recipe('Pasta Carbonara', pastaCarbonaraIngredients, pastaCarbonaraInstructions);
+  const recipe = new Recipe(1337, 'Pasta Carbonara', pastaCarbonaraIngredients, pastaCarbonaraInstructions);
+  t.is(recipe.id, 1337);
   t.is(recipe.name, 'Pasta Carbonara');
   t.deepEqual(recipe.ingredients, pastaCarbonaraIngredients, 'expected same ingredients');
   t.is(recipe.instructions, pastaCarbonaraInstructions);
@@ -55,7 +56,7 @@ test('RecipeTest: construction', t => {
 
 test('RecipeTest: toShoppingList()', t => {
   const list = new ShoppingList();
-  const recipe = new Recipe('Smörgås', sandwichIngredients, sandwichInstructions);
+  const recipe = new Recipe(0, 'Smörgås', sandwichIngredients, sandwichInstructions);
   list.add(bread);
   list.add(tomato);
   list.add(greve);
@@ -63,11 +64,11 @@ test('RecipeTest: toShoppingList()', t => {
   t.is(list.list[0].grocery.name, shoppingList.list[0].grocery.name, 'constructed ShoppingList should be same as generated');
   t.is(list.list[1].grocery.name, shoppingList.list[1].grocery.name, 'constructed ShoppingList should be same as generated');
   t.is(list.list[2].grocery.name, shoppingList.list[2].grocery.name, 'constructed ShoppingList should be same as generated');
-  t.is(new ShoppingList().length, new Recipe('empty', new Array<Ingredient>(), 'empty').toShoppingList().length, 'empty should be empty')
+  t.is(new ShoppingList().length, new Recipe(0, 'empty', new Array<Ingredient>(), 'empty').toShoppingList().length, 'empty should be empty')
 });
 
 test('RecipeTest: scale()', t => {
-  const recipe = new Recipe('Smörgås', sandwichIngredients, sandwichInstructions);
+  const recipe = new Recipe(0, 'Smörgås', sandwichIngredients, sandwichInstructions);
   recipe.scale(2.0);
   t.deepEqual(recipe.ingredients.map( i => i.amount), [2, 2, 4], 'expect ingredients to scale');
   recipe.scale(1.0);
@@ -77,8 +78,9 @@ test('RecipeTest: scale()', t => {
 });
 
 test('RecipeTest: toJson()', t => {
-  const recipe = new Recipe('Pasta Carbonara', pastaCarbonaraIngredients, pastaCarbonaraInstructions);
+  const recipe = new Recipe(0, 'Pasta Carbonara', pastaCarbonaraIngredients, pastaCarbonaraInstructions);
   const json = recipe.toJson();
+  t.is(json.id, 0, 'expect name to transfer');
   t.is(json.name, 'Pasta Carbonara', 'expect name to transfer');
   t.is(json.instructions,  pastaCarbonaraInstructions, 'instructions name to transfer');
   t.is(json.ingredients[0].name, 'Bacon', 'expect name to transfer');
