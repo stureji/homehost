@@ -21,7 +21,11 @@ export default {
   text-align: left;
   color: #2c3e50;
   margin: 0 auto;
-  width: 80vw;
+  width: 90vw;
+}
+body {
+  background-color: #FFFAFA;
+  margin-top: 0;
 }
 @media only screen and (max-width: 800px) {
   body {
@@ -33,5 +37,8 @@ export default {
 }
 a {
   text-decoration: none;
+}
+.page-content {
+  padding-left: 1rem;
 }
 </style>

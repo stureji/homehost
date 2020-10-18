@@ -3,6 +3,7 @@ import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
 import NotFound from '@/views/NotFound.vue';
 import ShoppingList from '@/views/ShoppingList.vue';
+import Recipes from '@/views/Recipes.vue';
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: '/shoplist',
     name: 'Shopping List',
     component: ShoppingList
+  },
+  {
+    path: '/recipes',
+    name: 'Recipes',
+    component: Recipes
   },
   {
     path: '/404',

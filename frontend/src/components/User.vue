@@ -1,6 +1,9 @@
 <template>
   <NavBar />
-  <code>{{ currentUser }}</code>
+  <div class="page-content">
+    <h3>Session information:</h3>
+    <code>CurrentUser: {{ currentUser }}</code>
+  </div>
 </template>
 
 <script>
@@ -9,7 +12,7 @@ import { userStore } from '@/stores/UserStore';
 
 export default {
   setup() {
-    const currentUser = userStore.currentUser();
+    const currentUser = userStore.getState();
 
     return {
       NavBar,

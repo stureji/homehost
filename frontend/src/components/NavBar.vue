@@ -1,9 +1,9 @@
 <template>
   <nav v-if="isLogged">
     <ul>
-      <router-link to="/" ><li>{{ user }}</li></router-link>
       <router-link to="/shoplist" ><li>Shopping List</li></router-link>
-      <router-link to="/recipe" ><li>Recipe</li></router-link>
+      <router-link to="/recipes" ><li>Recipes</li></router-link>
+      <router-link to="/" ><li>UserPanel</li></router-link>
     </ul>
   </nav>
 </template>
@@ -55,6 +55,9 @@ nav ul {
 nav ul li {
   display: inline;
   padding: 10px;
+}
+nav ul:first-child {
+  padding-left: 0;
 }
 nav ul li:hover {
   display: inline;

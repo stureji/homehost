@@ -1,4 +1,5 @@
 <template>
+  <h1 class="center">Select a user to login:</h1>
   <div class="flex-container" v-if="!loading && data && data.length">
     <a class="profile" v-for="user of data" :key="user.id" :href="'/login/' + user.id">
       <span class="username">{{user.username}}</span>
@@ -60,6 +61,9 @@ export default {
 </script>
 
 <style>
+.center {
+  text-align: center;
+}
 .flex-container {
   display: flex;
   align-items: center;
