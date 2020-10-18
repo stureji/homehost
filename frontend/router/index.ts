@@ -4,7 +4,7 @@ import Login from '@/views/Login.vue';
 import NotFound from '@/views/NotFound.vue';
 import ShoppingList from '@/views/ShoppingList.vue';
 import Recipes from '@/views/Recipes.vue';
-import ErrorLoadingPage from '@/components/ErrorLoadingPage.vue';
+import ErrorLoadingPage from '@/view/ErrorLoadingPage.vue';
 
 const routes = [
   {
