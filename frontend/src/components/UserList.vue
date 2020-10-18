@@ -47,7 +47,7 @@ export default {
         router.push('/500');
       }).then(() => {
         loading.value = false;
-      })
+      });
     }
 
     onMounted(() => {
@@ -69,11 +69,11 @@ export default {
 }
 .flex-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   height: 200px;
   background-color: inherit;
-  flex-wrap: wrap;
 }
 .profile {
   background-color: #333;
