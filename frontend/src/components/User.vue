@@ -2,7 +2,8 @@
   <NavBar />
   <div class="page-content">
     <h3>Session information:</h3>
-    <code>CurrentUser: {{ currentUser }}</code>
+    <code>{{ currentUser.id }}:{{ currentUser.username }}</code><br />
+    <code>Time since login: {{ (Date.now() -  currentUser.loginTime.getTime()) / 1000 }}s </code>
   </div>
 </template>
 

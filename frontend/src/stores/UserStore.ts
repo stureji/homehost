@@ -2,14 +2,16 @@ import { Store } from '../Store';
 
 interface User extends Object {
   id: number | undefined,
-  username: string
+  username: string,
+  loginTime: Date
 }
 
 class UserStore extends Store<User> {
   protected data(): User {
     return {
       id: undefined,
-      username: 'no user'
+      username: 'no user',
+      loginTime: new Date(Date.now())
     };
   }
 
@@ -17,6 +19,7 @@ class UserStore extends Store<User> {
     if(!this.isLogged()) {
       this.state.id = user.id;
       this.state.username = user.username;
+      this.state.loginTime = new Date();
       return true;
     }
     return false;
