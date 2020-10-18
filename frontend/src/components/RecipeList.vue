@@ -1,6 +1,7 @@
 <template>
+  <button @click="sortData()"> sortData </button>
   <div class="flex-container" v-if="!loading && data && data.length">
-    <div class="flex-item" v-for="recipe of data" :key="recipe.id">
+    <div class="flex-item" v-for="recipe in data" :key="recipe.id">
       <div class="recipe-image">
         {{ recipe.id }}
       </div>
@@ -40,7 +41,6 @@ export default {
 
         return res.json()
       }).then((json) => {
-        console.log(json.data)
         data.value = json.data;
       }).catch((e) => {
         error.value = e;
@@ -48,6 +48,14 @@ export default {
       }).then(() => {
         loading.value = false;
       });
+    }
+
+    const nukeData = () => {
+      data.value = [];
+    }
+
+    const sortData = () => {
+      data.value = data.value.sort((a, b) => a.id - b.id)
     }
 
     onMounted(() => {
@@ -58,7 +66,9 @@ export default {
       NavBar,
       data,
       loading,
-      error
+      error,
+      nukeData,
+      sortData
     }
   }
 }
