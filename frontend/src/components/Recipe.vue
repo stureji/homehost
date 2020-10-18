@@ -1,7 +1,9 @@
 <template>
   <NavBar />
-  <div id="page-content">
+  <div id="page-content" v-if="!loading && data && data.length">
     <h2 class="recipe-heading">{{ data.name }}</h2>
+    <p>{{ data.instructions }}</p>
+    <pre>{{ data }}</pre>
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
     const fetchData = () => {
       loading.value = true;
 
-      return fetch(process.env.VUE_APP_API + '/recipe/' + id, {
+      return fetch(process.env.VUE_APP_API + '/recipe/?id=' + id, {
         method: 'get',
         headers: {
           "content-type": "application/json"
@@ -37,6 +39,7 @@ export default {
 
         return res.json()
       }).then((json) => {
+        console.log(json.data)
         data.value = json.data;
       }).catch((e) => {
         error.value = e;
@@ -52,7 +55,9 @@ export default {
 
     return {
       NavBar,
-      data
+      data,
+      loading,
+      error
     }
   }
 }
