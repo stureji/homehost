@@ -1,11 +1,11 @@
 <template>
   <NavBar />
-  {{ currentUser }}
+  <code>{{ currentUser }}</code>
 </template>
 
 <script>
-import NavBar from '../components/NavBar';
-import { userStore } from '../stores/UserStore';
+import NavBar from '@/components/NavBar';
+import { userStore } from '@/stores/UserStore';
 
 export default {
   setup() {

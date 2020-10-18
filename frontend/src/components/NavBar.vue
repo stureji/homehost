@@ -2,8 +2,8 @@
   <nav v-if="isLogged">
     <ul>
       <router-link to="/" ><li>{{ user }}</li></router-link>
-      <router-link to="/user" ><li>User</li></router-link>
       <router-link to="/shoplist" ><li>Shopping List</li></router-link>
+      <router-link to="/recipe" ><li>Recipe</li></router-link>
     </ul>
   </nav>
 </template>
@@ -11,7 +11,7 @@
 <script>
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { userStore } from '../stores/UserStore';
+import { userStore } from '@/stores/UserStore';
 export default {
   setup() {
     const currentUser = userStore.currentUser();

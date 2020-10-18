@@ -5,7 +5,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { userStore } from '../stores/UserStore';
+import { userStore } from '@/stores/UserStore';
 
 export default {
   setup() {
@@ -51,7 +51,7 @@ export default {
             id: data.value.id,
             username: data.value.username
           });
-          if(storeLoggedIn) {router.push('/user');
+          if(storeLoggedIn) {router.push('/');
           } else {
             console.log("store did not log in")
           }
