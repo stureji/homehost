@@ -48,8 +48,8 @@ const sandwichIngredients = new Array(breadI, tomatoI, greveI);
 const sandwichInstructions = "Skiva bröded i skivor. Sätt på osten och sedan tomaten på det skivade brödet för varje macka du önskar.";
 const sandwich = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
 
-app.get('/api/recipe', (req: any, res: any) => {
-  console.log('HTTP GET   /api/recipe');
+app.get('/api/recipe/all', (req: any, res: any) => {
+  console.log('HTTP GET   /api/recipe/all');
   const mockCollection = new Array<Recipe>();
   mockCollection.push(pastaCarbonara);
   mockCollection.push(sandwich);
@@ -58,5 +58,34 @@ app.get('/api/recipe', (req: any, res: any) => {
     status: 200,
     message: "OK",
     data: mockCollection.map( r => r.toJson())
+  });
+});
+
+app.get('/api/recipe/', (req: any, res: any) => {
+  console.log('HTTP GET   /api/recipe');
+  let status = 400;
+  let message = "BAD REQUEST";
+  let data = undefined;
+
+  const mockCollection = new Array<Recipe>();
+  mockCollection.push(pastaCarbonara);
+  mockCollection.push(sandwich);
+
+  if(req.query.id != undefined || req.query.id != null) {
+    const find = mockCollection.find(r => r.id == req.query.id);
+    if(find) {
+      status = 200;
+      message = "OK";
+      data = find.toJson()
+    } else {
+      status = 404;
+      message = "NOT FOUND";
+    }
+  }
+
+  res.status(status).json({
+    status,
+    message,
+    data
   });
 });
