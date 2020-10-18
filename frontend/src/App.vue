@@ -24,7 +24,7 @@ export default {
   width: 90vw;
 }
 body {
-  background-color: #FFFAFA;
+  background-color: #FFFFFF;
   margin-top: 0;
 }
 @media only screen and (max-width: 800px) {
