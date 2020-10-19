@@ -64,9 +64,11 @@ export default class Recipe implements DataScheme<RecipeJSON> {
   }
 
   toJson(): RecipeJSON {
-    var json = '{"id": ' + this.#id + ',"name":"' + this.#name + '","ingredients":';
-    json += JSON.stringify(this.#ingredientsArray.map( i => i.toJson()));
-    json += ',"instructions":"' + this.#instructions + '"}';
-    return JSON.parse(json)
+    return {
+      id: this.#id,
+      name: this.#name,
+      ingredients: this.#ingredientsArray.map(x => x.toJson()),
+      instructions: this.#instructions
+    }
   }
 }

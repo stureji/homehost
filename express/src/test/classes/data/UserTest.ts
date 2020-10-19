@@ -6,6 +6,7 @@ import Grocery from '../../../classes/data/Grocery';
 import Ingredient from '../../../classes/data/Ingredient';
 import Recipe from '../../../classes/data/Recipe';
 import Section from '../../../classes/data/Section';
+import ShoppingList from '../../../classes/ShoppingList';
 
 
 const cheeseSection = new Section(7, 'Ostar');
@@ -67,5 +68,6 @@ test('UserTest: toJson()', t => {
   const json = user.toJson();
   t.is(json.id, 0, 'should match userId');
   t.is(json.username, 'test', 'should match username');
+  t.deepEqual(json.shoplist, new ShoppingList(sandwichIngredients), 'should match shoplist');
 });
 

@@ -1,13 +1,18 @@
 'use strict';
 
 import Grocery from './data/Grocery';
+import Ingredient from './data/Ingredient';
 import ShoppingListEntry from './ShoppingListEntry';
 
 export default class ShoppingList {
   #listOfShoppingTuples: Array<ShoppingListEntry>;
 
-  constructor() {
+  constructor(ingredients: Ingredient[] | undefined = undefined) {
     this.#listOfShoppingTuples = new Array<ShoppingListEntry>();
+    if(ingredients) {
+      ingredients.forEach(i =>
+        this.#listOfShoppingTuples.push(new ShoppingListEntry(i.grocery)));
+    }
   }
 
   get list() {

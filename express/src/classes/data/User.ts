@@ -55,6 +55,10 @@ export default class User implements DataScheme<UserJSON> {
   }
 
   toJson(): UserJSON {
-    return JSON.parse('{"id":' + this.#id + ',"username":"' + this.#username + '","shoppinglist":' + JSON.stringify(this.#shoppingList.toJson()) + '}');
+    return {
+      id: this.#id,
+      username: this.#username,
+      shoplist: this.#shoppingList
+    }
   }
 }
