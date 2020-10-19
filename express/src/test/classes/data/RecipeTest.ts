@@ -1,11 +1,11 @@
 'use strict';
 
 import test from 'ava';
-import Grocery from '../../classes/data/Grocery';
-import Ingredient from '../../classes/data/Ingredient';
-import Recipe from '../../classes/data/Recipe';
-import Section from '../../classes/data/Section';
-import ShoppingList from '../../classes/ShoppingList';
+import Grocery from '../../../classes/data/Grocery';
+import Ingredient from '../../../classes/data/Ingredient';
+import Recipe from '../../../classes/data/Recipe';
+import Section from '../../../classes/data/Section';
+import ShoppingList from '../../../classes/ShoppingList';
 
 const meatSection = new Section(0, 'Kött');
 const dairySection = new Section(1, 'Mejeri');
