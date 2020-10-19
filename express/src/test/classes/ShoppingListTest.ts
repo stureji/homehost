@@ -12,11 +12,11 @@ const vegtableSection = new Section(4, 'Vegtables');
 vegtableSection.sort = 4;
 const cheeseSection = new Section(7, 'Cheeses');
 cheeseSection.sort = 7;
-const greve = new Grocery('Grevé Cheese', cheeseSection);
-const parmesan = new Grocery('Parmesan Cheese', cheeseSection);
-const pecorino = new Grocery('Pecorino Cheese', cheeseSection);
-const spaghetti = new Grocery('Spaghetti', pastaSection);
-const tomatoes = new Grocery('Tomatoes', vegtableSection);
+const greve = new Grocery(9, 'Grevé Cheese', cheeseSection);
+const parmesan = new Grocery(7, 'Parmesan Cheese', cheeseSection);
+const pecorino = new Grocery(8, 'Pecorino Cheese', cheeseSection);
+const spaghetti = new Grocery(2, 'Spaghetti', pastaSection);
+const tomatoes = new Grocery(11, 'Tomatoes', vegtableSection);
 
 test('ShoppingList: construction', t => {
   const list = new ShoppingList();
@@ -134,7 +134,7 @@ test('ShoppingList: remove()', t => {
   t.is(list.length, 2, 'expected length removing missing');
   t.is(list.remove(spaghetti), true, 'spaghetti is in the list...');
   t.is(list.length, 1, 'expected length removing spaghetti');
-  t.is(list.remove(new Grocery('Tomatoes', vegtableSection)), true, 'tomatoes is in the list...');
+  t.is(list.remove(new Grocery(11, 'Tomatoes', vegtableSection)), true, 'tomatoes is in the list...');
   t.is(list.length, 0, 'expected length removing tomatoes');
 });
 

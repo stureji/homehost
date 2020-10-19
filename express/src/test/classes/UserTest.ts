@@ -10,8 +10,8 @@ import Section from '../../classes/Section';
 
 const cheeseSection = new Section(7, 'Ostar');
 const breadSection = new Section(3, 'Bakat');
-const greve = new Grocery('Grevé Ost', cheeseSection);
-const bread = new Grocery('Brödlimpa', breadSection);
+const greve = new Grocery(9, 'Grevé Ost', cheeseSection);
+const bread = new Grocery(10, 'Brödlimpa', breadSection);
 const breadI = new Ingredient(1, 'skiva', bread);
 const greveI = new Ingredient(2, 'skiva', greve);
 const sandwichIngredients = new Array(breadI, greveI);

@@ -6,7 +6,7 @@ import Grocery from '../../classes/Grocery';
 import Section from '../../classes/Section';
 import ShoppingListEntry from '../../classes/ShoppingListEntry';
 
-const tomato = new Grocery('Tomatoes', new Section(0, ''));
+const tomato = new Grocery(11, 'Tomatoes', new Section(0, ''));
 
 test('ShopingListEntry: construction()', t => {
   const entry = new ShoppingListEntry(tomato);

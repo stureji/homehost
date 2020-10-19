@@ -6,7 +6,7 @@ import Ingredient from '../../classes/Ingredient';
 import Section from '../../classes/Section';
 
 const vegtableSection = new Section(0, 'Vegtables');
-const carrot = new Grocery('Carrots', vegtableSection);
+const carrot = new Grocery(12, 'Carrots', vegtableSection);
 
 test('Ingredient: construction', t => {
   const i = new Ingredient(5, 'pices', carrot);
@@ -42,8 +42,8 @@ test('Ingredient: display()', t => {
 });
 
 test('Ingredient: display() when amount is zero', t => {
-  const oo = new Ingredient(0, 'for frying', new Grocery('Olive Oil', vegtableSection));
-  const salt = new Ingredient(0, 'to taste', new Grocery('Salt', vegtableSection));
+  const oo = new Ingredient(0, 'for frying', new Grocery(5, 'Olive Oil', vegtableSection));
+  const salt = new Ingredient(0, 'to taste', new Grocery(6, 'Salt', vegtableSection));
   t.is(oo.display(), 'Olive Oil for frying', 'different display when amount is zero')
   t.is(salt.display(), 'Salt to taste', 'different display when amount is zero')
 })
