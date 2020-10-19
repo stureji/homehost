@@ -1,8 +1,8 @@
 'use strict';
 
 import Ingredient from "./Ingredient";
-import ShoppingList from "./ShoppingList";
-import ShoppingListEntry from "./ShoppingListEntry";
+import ShoppingList from "../ShoppingList";
+import ShoppingListEntry from "../ShoppingListEntry";
 
 export default class Recipe {
   #id: number;

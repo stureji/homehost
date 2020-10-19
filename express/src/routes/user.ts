@@ -1,5 +1,5 @@
 import express  from 'express';
-import User from '../classes/User';
+import User from '../classes/data/User';
 
 const sverker = new User(0, 'Sverker Petersson');
 const lina = new User(1, 'Bosse Bosinna');

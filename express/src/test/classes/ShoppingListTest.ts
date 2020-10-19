@@ -1,8 +1,8 @@
 'use strict';
 
 import test from 'ava';
-import Grocery from '../../classes/Grocery';
-import Section from '../../classes/Section';
+import Grocery from '../../classes/data/Grocery';
+import Section from '../../classes/data/Section';
 import ShoppingList from '../../classes/ShoppingList';
 import ShoppingListEntry from '../../classes/ShoppingListEntry';
 

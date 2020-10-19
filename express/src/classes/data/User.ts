@@ -1,7 +1,7 @@
 'use strict';
 
 import Recipe from './Recipe';
-import ShoppingList from './ShoppingList';
+import ShoppingList from '../ShoppingList';
 
 export default class User {
   #id: number;

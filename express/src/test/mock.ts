@@ -1,11 +1,11 @@
 'use strict';
 
 import test from 'ava';
-import Grocery from '../classes/Grocery';
-import Ingredient from '../classes/Ingredient';
-import Recipe from '../classes/Recipe';
-import Section from '../classes/Section';
-import User from '../classes/User';
+import Grocery from '../classes/data/Grocery';
+import Ingredient from '../classes/data/Ingredient';
+import Recipe from '../classes/data/Recipe';
+import Section from '../classes/data/Section';
+import User from '../classes/data/User';
 
 /* All this should be in DB and should be fetched in production */
 

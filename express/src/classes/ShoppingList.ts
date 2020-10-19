@@ -1,6 +1,6 @@
 'use strict';
 
-import Grocery from './Grocery';
+import Grocery from './data/Grocery';
 import ShoppingListEntry from './ShoppingListEntry';
 
 export default class ShoppingList {
