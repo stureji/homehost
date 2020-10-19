@@ -28,7 +28,7 @@ app.post('/api/user/login', (req: any, res: any) => {
     if(search) {
       status = 200;
       message = "OK";
-      data = search.toJson();
+      data = JSON.stringify(search.toJson());
     }
   }
 

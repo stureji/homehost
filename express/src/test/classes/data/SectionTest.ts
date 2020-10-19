@@ -8,17 +8,17 @@ const name = 'testname';
 
 test('Section: construction', t => {
   const s = new Section(id, name);
-  t.is(s.id, id, 'id should match passed value');
-  t.is(s.name, name, 'name should match passed value');
-  t.is(s.sort, 1337, 'should construct with defaul value');
+  t.assert(s.id === id, 'id is correct');
+  t.assert(s.name === name, 'name is correct');
+  t.assert(s.sort === Section.DEFAULT_SORT, 'sort is correct');
 });
 
 test('Section: set sort', t => {
   const s = new Section(id, name);
   const newSort = 10;
-  t.is(s.sort, 1337, 'should construct with defaul value');
+  t.assert(s.sort === Section.DEFAULT_SORT, 'should construct with defaul value');
   s.sort = newSort;
-  t.is(s.sort, newSort, 'should match with new value');
+  t.assert(s.sort === newSort, 'should match with new value');
 });
 
 test('Section: compareTo()', t => {
@@ -51,4 +51,17 @@ test('Section: compareTo()', t => {
   t.is(ss[1].id, s2.id, 's2 expected to be second given sorting');
   t.is(ss[2].id, s3.id, 's3 expected to be third given sorting');
   t.is(ss[3].id, s4.id, 's4 expected to be last given sorting');
+});
+
+test('Section: toJson()', t => {
+  const s = new Section(id, name);
+  const json = s.toJson();
+  t.assert(json.id === id, 'id is correct');
+  t.assert(json.name === name, 'name is correct');
+  t.assert(json.sort === Section.DEFAULT_SORT, 'sort is correct');
+  s.sort = 61;
+  const newJson = s.toJson();
+  t.assert(newJson.id === id, 'id is correct');
+  t.assert(newJson.name === name, 'name is correct');
+  t.assert(newJson.sort === 61, 'sort has changed');
 });

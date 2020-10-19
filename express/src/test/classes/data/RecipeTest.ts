@@ -28,17 +28,17 @@ const greve = new Grocery(9, 'Grevé Ost', cheeseSection);
 const bread = new Grocery(10, 'Brödlimpa', breadSection);
 const tomato = new Grocery(11, 'Färska Tomater', vegtableSection);
 
-const baconI = new Ingredient(200, 'g', bacon);
-const spaghettiI = new Ingredient(400, 'g', spaghetti);
-const eggI = new Ingredient(4, 'stycken', egg);
-const pepperI = new Ingredient(0, 'nymalen efter smak', pepper);
-const saltI = new Ingredient(0, 'till pastavatten', salt);
-const oilI = new Ingredient(0, 'till stekning', oil);
-const parmesanI = new Ingredient(150, 'g', parmesan);
-const pecorinoI = new Ingredient(150, 'g', pecorino);
-const breadI = new Ingredient(1, 'skiva', bread);
-const tomatoI = new Ingredient(1, 'skiva', tomato);
-const greveI = new Ingredient(2, 'skiva', greve);
+const baconI = new Ingredient(1, 200, 'g', bacon);
+const spaghettiI = new Ingredient(2, 400, 'g', spaghetti);
+const eggI = new Ingredient(3, 4, 'stycken', egg);
+const pepperI = new Ingredient(4, 0, 'nymalen efter smak', pepper);
+const saltI = new Ingredient(5, 0, 'till pastavatten', salt);
+const oilI = new Ingredient(6, 0, 'till stekning', oil);
+const parmesanI = new Ingredient(7, 150, 'g', parmesan);
+const pecorinoI = new Ingredient(8, 150, 'g', pecorino);
+const breadI = new Ingredient(9, 1, 'skiva', bread);
+const tomatoI = new Ingredient(10, 1, 'skiva', tomato);
+const greveI = new Ingredient(11, 2, 'skiva', greve);
 
 const pastaCarbonaraIngredients = new Array(baconI, spaghettiI, eggI, pepperI, saltI, oilI, parmesanI, pecorinoI);
 const sandwichIngredients = new Array(breadI, tomatoI, greveI);
@@ -48,10 +48,10 @@ const sandwichInstructions = "Skiva bröded i skivor. Sätt på osten och sedan 
 
 test('RecipeTest: construction', t => {
   const recipe = new Recipe(1337, 'Pasta Carbonara', pastaCarbonaraIngredients, pastaCarbonaraInstructions);
-  t.is(recipe.id, 1337);
-  t.is(recipe.name, 'Pasta Carbonara');
-  t.deepEqual(recipe.ingredients, pastaCarbonaraIngredients, 'expected same ingredients');
-  t.is(recipe.instructions, pastaCarbonaraInstructions);
+  t.assert(recipe.id === 1337, 'id is correct');
+  t.assert(recipe.name === 'Pasta Carbonara', 'name is correct');
+  t.assert(recipe.ingredients === pastaCarbonaraIngredients, 'ingredients are correct');
+  t.assert(recipe.instructions === pastaCarbonaraInstructions, 'instructions are correct');
 });
 
 test('RecipeTest: toShoppingList()', t => {
@@ -78,12 +78,12 @@ test('RecipeTest: scale()', t => {
 });
 
 test('RecipeTest: toJson()', t => {
-  const recipe = new Recipe(0, 'Pasta Carbonara', pastaCarbonaraIngredients, pastaCarbonaraInstructions);
+  const recipe = new Recipe(9999, 'Pasta Carbonara', pastaCarbonaraIngredients, pastaCarbonaraInstructions);
   const json = recipe.toJson();
-  t.is(json.id, 0, 'expect name to transfer');
-  t.is(json.name, 'Pasta Carbonara', 'expect name to transfer');
-  t.is(json.instructions,  pastaCarbonaraInstructions, 'instructions name to transfer');
-  t.is(json.ingredients[0].name, 'Bacon', 'expect name to transfer');
-  t.is(json.ingredients[0].amount, 200, 'expect amount to transfer');
-  t.is(json.ingredients[0].unit, 'g', 'expect unit to transfer');
+  t.assert(json.id === 9999, 'expect id to transfer');
+  t.assert(json.name === 'Pasta Carbonara', 'expect name to transfer');
+  t.assert(json.instructions ===  pastaCarbonaraInstructions, 'instructions name to transfer');
+  t.assert(json.ingredients[0].name === 'Bacon', 'expect name to transfer');
+  t.assert(json.ingredients[0].amount === 200, 'expect amount to transfer');
+  t.assert(json.ingredients[0].unit === 'g', 'expect unit to transfer');
 });

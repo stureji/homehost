@@ -12,8 +12,8 @@ const cheeseSection = new Section(7, 'Ostar');
 const breadSection = new Section(3, 'Bakat');
 const greve = new Grocery(9, 'Grevé Ost', cheeseSection);
 const bread = new Grocery(10, 'Brödlimpa', breadSection);
-const breadI = new Ingredient(1, 'skiva', bread);
-const greveI = new Ingredient(2, 'skiva', greve);
+const breadI = new Ingredient(1, 1, 'skiva', bread);
+const greveI = new Ingredient(2, 2, 'skiva', greve);
 const sandwichIngredients = new Array(breadI, greveI);
 const sandwichInstructions = "Skiva bröded i skivor. Sätt på osten och sedan tomaten på det skivade brödet för varje macka du önskar.";
 

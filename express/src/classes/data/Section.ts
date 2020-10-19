@@ -1,6 +1,16 @@
 'use strict';
 
-export default class Section {
+import DataScheme from "./DataScheme";
+
+export interface SectionJSON {
+  id: number,
+  name: string,
+  sort: number
+}
+
+
+export default class Section implements DataScheme<SectionJSON> {
+  static DEFAULT_SORT: number = 1337;
   #id: number;
   #name: string;
   #sort: number;
@@ -8,7 +18,7 @@ export default class Section {
   constructor(id: number, name: string) {
     this.#id = id;
     this.#name = name;
-    this.#sort = 1337;
+    this.#sort = Section.DEFAULT_SORT;
   }
 
   get id() {
@@ -45,5 +55,17 @@ export default class Section {
 
   comparator(a: Section, b: Section): number {
     return a.compareTo(b);
+  }
+
+  display(): string {
+    return this.#name + ' (' + this.#sort  + ')';
+  }
+
+  toJson(): SectionJSON {
+    return {
+      id: this.#id,
+      name: this.#name,
+      sort: this.#sort
+    }
   }
 }

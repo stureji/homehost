@@ -2,8 +2,15 @@
 
 import Recipe from './Recipe';
 import ShoppingList from '../ShoppingList';
+import DataScheme from './DataScheme';
 
-export default class User {
+interface UserJSON {
+  id: number,
+  username: string,
+  shoplist: ShoppingList
+}
+
+export default class User implements DataScheme<UserJSON> {
   #id: number;
   #username: string;
   #shoppingList: ShoppingList;
@@ -47,7 +54,7 @@ export default class User {
     return 'User: ' + this.#username;
   }
 
-  toJson() {
+  toJson(): UserJSON {
     return JSON.parse('{"id":' + this.#id + ',"username":"' + this.#username + '","shoppinglist":' + JSON.stringify(this.#shoppingList.toJson()) + '}');
   }
 }

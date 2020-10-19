@@ -1,17 +1,25 @@
 'use strict';
 
-import Ingredient from "./Ingredient";
+import Ingredient, { IngredientJSON } from "./Ingredient";
 import ShoppingList from "../ShoppingList";
 import ShoppingListEntry from "../ShoppingListEntry";
+import DataScheme from './DataScheme';
 
-export default class Recipe {
+export interface RecipeJSON {
+  id: number,
+  name: string,
+  ingredients: IngredientJSON[],
+  instructions: string
+}
+
+export default class Recipe implements DataScheme<RecipeJSON> {
   #id: number;
   #name: string;
-  #ingredientsArray: Array<Ingredient>;
+  #ingredientsArray: Ingredient[];
   #instructions: string;
   #scale: number;
 
-  constructor(id: number, nameOfRecipe: string, arrayWithIngredients: Array<Ingredient>, instructions: string) {
+  constructor(id: number, nameOfRecipe: string, arrayWithIngredients: Ingredient[], instructions: string) {
     this.#id = id;
     this.#name = nameOfRecipe;
     this.#ingredientsArray = arrayWithIngredients;
@@ -51,7 +59,11 @@ export default class Recipe {
     return list;
   }
 
-  toJson() {
+  display(): string {
+    throw new Error("Method not implemented.");
+  }
+
+  toJson(): RecipeJSON {
     var json = '{"id": ' + this.#id + ',"name":"' + this.#name + '","ingredients":';
     json += JSON.stringify(this.#ingredientsArray.map( i => i.toJson()));
     json += ',"instructions":"' + this.#instructions + '"}';

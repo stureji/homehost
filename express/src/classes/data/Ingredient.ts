@@ -1,14 +1,24 @@
 'use strict';
 
+import DataScheme from "./DataScheme";
 import Grocery from "./Grocery";
 
-export default class Ingredient {
+export interface IngredientJSON {
+  id: number,
+  amount: number,
+  unit: string,
+  name: string
+}
+
+export default class Ingredient implements DataScheme<IngredientJSON> {
+  #id: number;
   #amount0: number;
   #amountScaled: number;
   #unit: string;
   #grocery: Grocery;
 
-  constructor(amount: number, unit: string, grocery: Grocery) {
+  constructor(id: number, amount: number, unit: string, grocery: Grocery) {
+    this.#id = id;
     this.#amount0 = amount;
     this.#unit = unit;
     this.#grocery = grocery;
@@ -18,6 +28,10 @@ export default class Ingredient {
   scale(value: number) {
     this.#amountScaled = value * this.#amount0;
     return this.#amountScaled;
+  }
+
+  get id() {
+    return this.#id;
   }
 
   get amount() {
@@ -32,14 +46,19 @@ export default class Ingredient {
     return this.#grocery;
   }
 
-  display() {
+  display(): string {
     if(this.#amountScaled > 0) {
       return this.#amountScaled + ' ' + this.#unit + ' ' + this.#grocery.name;
     }
     return this.#grocery.name + ' ' + this.#unit;
   }
 
-  toJson() {
-    return JSON.parse('{"name":"' + this.#grocery.name + '","amount":' + this.#amountScaled + ',"unit":"' + this.#unit + '"}');
+  toJson(): IngredientJSON {
+    return {
+      id: this.#id,
+      amount: this.#amountScaled,
+      unit: this.#unit,
+      name: this.#grocery.name
+    };
   }
 }

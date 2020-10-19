@@ -1,8 +1,15 @@
 'use strict';
 
+import DataScheme from './DataScheme.js';
 import Section from './Section.js';
 
-export default class Grocery {
+export interface GroceryJSON {
+  id: number,
+  name: string,
+  section: Section
+}
+
+export default class Grocery implements DataScheme<GroceryJSON> {
   #id: number;
   #name: string;
   #section: Section;
@@ -23,5 +30,17 @@ export default class Grocery {
 
   get section() {
     return this.#section
+  }
+
+  display(): string {
+    throw new Error("Method not implemented.");
+  }
+
+  toJson(): GroceryJSON {
+    return {
+      id: this.#id,
+      name: this.#name,
+      section: this.#section
+    }
   }
 }
