@@ -16,12 +16,16 @@ app.get('/api/user', async (req: any, res: any) => {
       throw new Error('Could not connect to database.');
     }
   }).then((dbresult) => {
-    return dbresult.rows.map( r => {
-      return new User(r.user_id, r.username, r.shoplist);
-    });
+    if(dbresult.rowCount > 0) {
+      return dbresult.rows.map( r => {
+        return new User(r.user_id, r.username, r.shoplist);
+      });
+    } else {
+      return [];
+    }
   }).catch((error) => {
     console.log(error);
-    return [ new User(0, 'error') ];
+    return [];
   });
 
   data[0].shoppinglist.add(new Grocery(1337, 'l33t root', new Section(1337, 'l33t place')));
