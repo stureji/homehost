@@ -1,8 +1,6 @@
 import express  from 'express';
 import { pool } from '../database';
 import User, { UserJSON } from '../classes/data/User';
-import Grocery from '../classes/data/Grocery';
-import Section from '../classes/data/Section';
 
 const app = module.exports = express();
 
@@ -27,8 +25,6 @@ app.get('/api/user', async (req: any, res: any) => {
     console.log(error);
     return [];
   });
-
-  data[0].shoppinglist.add(new Grocery(1337, 'l33t root', new Section(1337, 'l33t place')));
 
   res.status(200).json({
     status: 200,
