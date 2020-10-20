@@ -1,10 +1,11 @@
 <template>
   <div id="search-container">
-    <input id="search-bar" type="text" :value='searchInput'
-    @input="evt => {
+    <input id="search-bar" type="search"
+    autocomplete="off" placeholder="Sök efter recept"
+    :value='searchInput' @input="evt => {
         searchInput = evt.target.value;
         reactiveInput(searchInput);
-      }" placeholder="Sök efter recept" />
+      }" />
   </div>
   <div class="flex-container" v-if="!loading && stage && stage.length">
     <div @click="routeTo(recipe.id)" class="flex-item" v-for="recipe in stage" :key="recipe.id">
