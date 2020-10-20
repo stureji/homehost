@@ -48,6 +48,20 @@ CREATE TABLE ingredient(
     CHECK( ingredient_amount >= 0)
 );
 
+CREATE TABLE shoplist(
+    user_id INT NOT NULL,
+    grocery_id INT NOT NULL,
+    PRIMARY KEY(user_id, grocery_id),
+    CONSTRAINT fk_user
+        FOREIGN KEY(USER_ID)
+            REFERENCES users(user_id)
+            ON DELETE CASCADE,
+    CONSTRAINT fk_grocery
+        FOREIGN KEY(grocery_id)
+            REFERENCES grocery(grocery_id)
+            ON DELETE CASCADE
+);
+
 CREATE TABLE ingredients(
     recipe_id INT NOT NULL,
     ingredient_id INT NOT NULL,
