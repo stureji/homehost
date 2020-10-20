@@ -1,13 +1,13 @@
 'use strict';
 
 import Recipe from './Recipe';
-import ShoppingList from '../ShoppingList';
+import ShoppingList, { ShoppingListJSON } from '../ShoppingList';
 import DataScheme from './DataScheme';
 
 export interface UserJSON {
   id: number,
   username: string,
-  shoplist: ShoppingList
+  shoplist: ShoppingListJSON[]
 }
 
 export default class User implements DataScheme<UserJSON> {
@@ -15,10 +15,10 @@ export default class User implements DataScheme<UserJSON> {
   #username: string;
   #shoppingList: ShoppingList;
 
-  constructor(id: number, username: string) {
+  constructor(id: number, username: string, shoplist: ShoppingList = new ShoppingList()) {
     this.#id = id;
     this.#username = username;
-    this.#shoppingList = new ShoppingList();
+    this.#shoppingList = shoplist;
   }
 
   get id() {
@@ -58,7 +58,7 @@ export default class User implements DataScheme<UserJSON> {
     return {
       id: this.#id,
       username: this.#username,
-      shoplist: this.#shoppingList
+      shoplist: this.#shoppingList.toJson()
     }
   }
 }
