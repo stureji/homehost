@@ -1,9 +1,9 @@
 'use strict';
 
-import DataScheme from './data/DataScheme';
-import Grocery from './data/Grocery';
-import Ingredient from './data/Ingredient';
-import ShoppingListEntry from './ShoppingListEntry';
+import DataScheme from './DataScheme';
+import Grocery from './Grocery';
+import Ingredient from './Ingredient';
+import ShoppingListEntry from '../ShoppingListEntry';
 
 export interface ShoppingListJSON {
   checked: boolean,

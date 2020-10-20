@@ -1,7 +1,7 @@
 'use strict';
 
 import Recipe from './Recipe';
-import ShoppingList, { ShoppingListJSON } from '../ShoppingList';
+import ShoppingList, { ShoppingListJSON } from './ShoppingList';
 import DataScheme from './DataScheme';
 
 export interface UserJSON {

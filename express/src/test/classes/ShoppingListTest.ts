@@ -3,7 +3,7 @@
 import test from 'ava';
 import Grocery from '../../classes/data/Grocery';
 import Section from '../../classes/data/Section';
-import ShoppingList from '../../classes/ShoppingList';
+import ShoppingList from '../../classes/data/ShoppingList';
 import ShoppingListEntry from '../../classes/ShoppingListEntry';
 
 const pastaSection = new Section(2, 'Pastas');

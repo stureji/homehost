@@ -1,7 +1,7 @@
 'use strict';
 
 import Ingredient, { IngredientJSON } from "./Ingredient";
-import ShoppingList from "../ShoppingList";
+import ShoppingList from "./ShoppingList";
 import ShoppingListEntry from "../ShoppingListEntry";
 import DataScheme from './DataScheme';
 

@@ -6,7 +6,7 @@ import Grocery from '../../../classes/data/Grocery';
 import Ingredient from '../../../classes/data/Ingredient';
 import Recipe from '../../../classes/data/Recipe';
 import Section from '../../../classes/data/Section';
-import ShoppingList from '../../../classes/ShoppingList';
+import ShoppingList from '../../../classes/data/ShoppingList';
 
 
 const cheeseSection = new Section(7, 'Ostar');
