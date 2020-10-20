@@ -33,7 +33,6 @@ test('UserTest: addRecipeToList()', t => {
   t.is(user.shoppinglist.length, resList.length, 'expect same length');
 });
 
-
 test('UserTest: clearCheckedItems()', t => {
   const user = new User(0, 'test');
   const recipe = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
@@ -56,6 +55,13 @@ test('UserTest: clearList()', t => {
   t.is(user.shoppinglist.length, 0, 'should be empty now');
 });
 
+test('UserTest: construct with shoplist', t => {
+  const recipe = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
+  const list = recipe.toShoppingList();
+  const user = new User(666, 'HungryBoy', list);
+  t.is(user.shoppinglist.length, 2, 'should not be empty');
+});
+
 test('UserTest: display()', t => {
   const user = new User(0, 'test');
   t.is(user.display(), 'User: test', 'username should be displayed.')
@@ -68,6 +74,6 @@ test('UserTest: toJson()', t => {
   const json = user.toJson();
   t.is(json.id, 0, 'should match userId');
   t.is(json.username, 'test', 'should match username');
-  t.deepEqual(json.shoplist, new ShoppingList(sandwichIngredients), 'should match shoplist');
+  t.deepEqual(json.shoplist, new ShoppingList(sandwichIngredients).toJson(), 'should match shoplist');
 });
 
