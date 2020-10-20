@@ -4,7 +4,7 @@ import Recipe from './Recipe';
 import ShoppingList from '../ShoppingList';
 import DataScheme from './DataScheme';
 
-interface UserJSON {
+export interface UserJSON {
   id: number,
   username: string,
   shoplist: ShoppingList

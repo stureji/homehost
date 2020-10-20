@@ -26,6 +26,16 @@ CREATE TABLE grocery(
     CHECK(LENGTH(grocery_name) >= 2)
 );
 
+
+CREATE TABLE recipe(
+    recipe_id INT GENERATED ALWAYS AS IDENTITY,
+    recipe_name TEXT NOT NULL,
+    instructions TEXT,
+    PRIMARY KEY(recipe_id),
+    CHECK(LENGTH(recipe_name) >= 4),
+    CHECK(LENGTH(instructions) >= 10)
+);
+
 CREATE TABLE ingredient(
     ingredient_id INT GENERATED ALWAYS AS IDENTITY,
     grocery_id INT NOT NULL,
@@ -51,13 +61,4 @@ CREATE TABLE ingredients(
         FOREIGN KEY(ingredient_id)
             REFERENCES ingredient(ingredient_id)
             ON DELETE NO ACTION
-);
-
-CREATE TABLE recipe(
-    recipe_id INT GENERATED ALWAYS AS IDENTITY,
-    recipe_name TEXT NOT NULL,
-    instructions TEXT,
-    PRIMARY KEY(recipe_id),
-    CHECK(LENGTH(recipe_name) >= 4),
-    CHECK(LENGTH(instructions) >= 10)
 );
