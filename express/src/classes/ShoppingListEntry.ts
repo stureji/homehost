@@ -32,7 +32,10 @@ export default class ShoppingListEntry {
     return checkmark + this.#grocery.name;
   }
 
-  toJson() {
-    return JSON.parse('{"checked":' + this.#checked + ',"grocery":"' + this.#grocery.name + '"}');
+  toJson(): {checked: boolean, grocery: string} {
+    return {
+      checked: this.#checked,
+      grocery: this.#grocery.name
+    }
   }
 }

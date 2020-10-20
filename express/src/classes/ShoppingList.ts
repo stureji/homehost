@@ -1,10 +1,16 @@
 'use strict';
 
+import DataScheme from './data/DataScheme';
 import Grocery from './data/Grocery';
 import Ingredient from './data/Ingredient';
 import ShoppingListEntry from './ShoppingListEntry';
 
-export default class ShoppingList {
+export interface ShoppingListJSON {
+  checked: boolean,
+  grocery: string
+}
+
+export default class ShoppingList implements DataScheme<ShoppingListJSON[]> {
   #listOfShoppingTuples: Array<ShoppingListEntry>;
 
   constructor(ingredients: Ingredient[] | undefined = undefined) {
@@ -91,7 +97,7 @@ export default class ShoppingList {
     return this.#listOfShoppingTuples.map( tupe => tupe.display()).join('\n');
   }
 
-  toJson() {
-    return JSON.parse('{"list":' + JSON.stringify(this.#listOfShoppingTuples.map( tupe => tupe.toJson() )) + '}');
+  toJson(): ShoppingListJSON[] {
+    return this.#listOfShoppingTuples.map( x => x.toJson());
   }
 }
