@@ -64,12 +64,11 @@ export default {
     }
 
     const reactiveInput = (input) => {
-      console.log(input)
       if(input == '') {
         searchResult.value = [];
         stage.value = data.value;
       } else {
-        searchResult.value = readonly(data).value.filter( r => r.name.toLowerCase().includes(input))
+        searchResult.value = readonly(data).value.filter( r => r.name.toLowerCase().includes(input.toLowerCase()))
         stage.value = searchResult.value;
       }
     }
