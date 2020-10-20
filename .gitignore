@@ -13,3 +13,6 @@ dist/
 
 #md files
 *.md
+
+# test files
+examples.sql
