@@ -3,7 +3,6 @@ CREATE DATABASE homehost;
 CREATE TABLE users(
     user_id INT GENERATED ALWAYS AS IDENTITY,
     username TEXT UNIQUE NOT NULL,
-    last_login TIMESTAMP NOT NULL DEFAULT NOW(),
     PRIMARY KEY(user_id),
     CHECK(LENGTH(username) >= 4)
 );
