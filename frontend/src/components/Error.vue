@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
   setup() {
@@ -14,6 +15,10 @@ export default {
     const goHome = () => {
       router.push('/');
     }
+
+    onMounted(() => {
+      window.history.pushState('', 'Error', '/');
+    });
 
     return {
       goHome
