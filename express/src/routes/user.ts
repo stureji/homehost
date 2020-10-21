@@ -1,16 +1,13 @@
 import express  from 'express';
 import { pool } from '../database';
-import User, { UserJSON } from '../classes/data/User';
-
+import User from '../classes/data/User';
+import ServerResponse from '../classes/ServerResponse';
 const app = module.exports = express();
 
 app.get('/api/user', async (req: any, res: any) => {
-  console.log('HTTP GET   /api/user');
-  let status = 400;
-  let message = "BAD_REQUEST";
-  let data: UserJSON[];
+  const response = new ServerResponse('HTTP GET   /api/user');
 
-  data = await pool.connect().then((connection) => {
+  response.data = await pool.connect().then((connection) => {
     if(connection) {
       return pool.query('SELECT user_id, username FROM users');
     } else {
@@ -18,50 +15,31 @@ app.get('/api/user', async (req: any, res: any) => {
     }
   }).then((dbresult) => {
     if(dbresult.rowCount > 0) {
-      status = 200;
-      message = "OK"
-      console.log("HTTP RESPONSE: 200 OK");
       return dbresult.rows.map( r => {
-        return new User(r.user_id, r.username, r.shoplist).toJson();
+        return new User(r.user_id, r.username, r.shoplist);
       });
     } else {
-      status = 404;
-      message = "NOT_FOUND";
-      console.log("HTTP RESPONSE: 404 NOT_FOUND");
       return [];
     }
   }).catch((error) => {
-    console.log(error);
-    console.log("HTTP RESPONSE: 500 INTERNAL_SERVER_ERROR");
+    response.error = error;
     return [];
   });
 
-  res.status(status).json({
-    status,
-    message,
-    data
-  });
+  res.status(response.status).json(response.json);
 });
 
 app.get('/api/user/login', (req: any, res:any) => {
-  console.log('HTTP GET   /api/user/login');
-  console.log('HTTP RESPONSE: 400 BAD_REQUEST');
-  res.status(400).json({
-    status: 400,
-    message: "BAD_REQUEST",
-    data: [ ]
-  })
+  const response = new ServerResponse('HTTP GET   /api/user/login');
+  res.status(400).json(response.json);
 });
 
 app.post('/api/user/login', async (req: any, res: any) => {
   const requestId = parseInt(req.body.id);
-  console.log('HTTP POST  /api/user/login/' + requestId);
-  let status = 401;
-  let message = "UNAUTHORIZED";
-  let data = JSON.stringify({});
+  const response = new ServerResponse('HTTP POST  /api/user/login/' + requestId);
 
   if(requestId != undefined && requestId != null && requestId > 0) {
-    const queryResponse: User | undefined = await pool.connect().then((connection) => {
+    const data: User[] = await pool.connect().then((connection) => {
       if(connection) {
         return pool.query<{user_id: number, username: string}>('SELECT user_id, username FROM users WHERE user_id = $1', [requestId]);
       } else {
@@ -69,33 +47,21 @@ app.post('/api/user/login', async (req: any, res: any) => {
       }
     }).then((dbresult) => {
       if(dbresult.rowCount == 1) {
-        status = 200;
-        message = "OK";
-        console.log("HTTP RESPONSE: 200 OK");
-        return new User(dbresult.rows[0].user_id, dbresult.rows[0].username);
+        return [new User(dbresult.rows[0].user_id, dbresult.rows[0].username)];
       } else {
-        throw new Error('Authorization failed');
+        return [];
       }
     }).catch((error) => {
-      console.log(error);
-      status = 500;
-      message = "INTERNAL_SERVER_ERROR";
-      console.log("HTTP RESPONSE: 500 INTERNAL_SERVER_ERROR");
-      return undefined;
+      response.error = error;
+      return [];
     });
 
-    if(queryResponse != undefined) {
-      data = JSON.stringify(queryResponse.toJson());
+    if(data.length == 1) {
+      response.data = data;
+    } else {
+      response.status = 401;
     }
-  } else {
-    status = 400;
-    message = "BAD_REQUEST"
-    console.log('HTTP RESPONSE: 400 BAD_REQUEST');
   }
 
-  res.status(status).json({
-    status,
-    message,
-    data
-  })
+  res.status(response.status).json(response.json);
 });

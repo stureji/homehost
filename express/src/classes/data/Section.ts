@@ -1,8 +1,8 @@
 'use strict';
 
-import DataScheme from "./DataScheme";
+import {DataScheme, SchemeJSON} from "./DataScheme";
 
-export interface SectionJSON {
+export interface SectionJSON extends SchemeJSON {
   id: number,
   name: string,
   sort: number

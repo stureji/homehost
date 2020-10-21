@@ -2,9 +2,9 @@
 
 import Recipe from './Recipe';
 import ShoppingList, { ShoppingListJSON } from './ShoppingList';
-import DataScheme from './DataScheme';
+import {DataScheme, SchemeJSON} from './DataScheme';
 
-export interface UserJSON {
+export interface UserJSON extends SchemeJSON {
   id: number,
   username: string,
   shoplist: ShoppingListJSON[]

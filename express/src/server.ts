@@ -3,6 +3,7 @@
 /* Imports */
 
 import express  from 'express';
+import ServerResponse from './classes/ServerResponse';
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -29,19 +30,15 @@ endpoints.forEach(e => app.use(e));
 /* Root end point */
 
 app.get('/', (req:any, res:any) => {
-  console.log('HTTP GET   /')
-  res.status(404).json({
-    status: 404,
-    message: "NOT_FOUND"
-  });
+  const response = new ServerResponse('HTTP GET   /');
+  response.status = 404;
+  res.status(response.status).json(response.json);
 });
 
 app.get('/api', (req: any, res: any) => {
-  console.log('HTTP GET   /api');
-  res.status(200).json({
-    status: 200,
-    message: "OK"
-  });
+  const response = new ServerResponse('HTTP GET   /api');
+  response.status = 200;
+  res.status(response.status).json(response.json);
 });
 
 app.listen(process.env.HOST_PORT, () => {

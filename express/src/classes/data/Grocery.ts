@@ -1,9 +1,9 @@
 'use strict';
 
-import DataScheme from './DataScheme.js';
+import {DataScheme, SchemeJSON} from './DataScheme.js';
 import Section from './Section.js';
 
-export interface GroceryJSON {
+export interface GroceryJSON extends SchemeJSON {
   id: number,
   name: string,
   section: Section

@@ -1,6 +1,10 @@
-export default interface DataScheme<T> {
+export interface SchemeJSON {
+  field?: any;
+}
 
-  display(): string
+export interface DataScheme<T extends SchemeJSON | SchemeJSON[]> {
 
-  toJson(): T
+  display(): string;
+
+  toJson(): T;
 }
