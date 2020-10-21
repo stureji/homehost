@@ -29,15 +29,21 @@ endpoints.forEach(e => app.use(e));
 
 /* Root end point */
 
-app.get('/', (req: Request, res: any) => {
-  const response = new ServerResponse('GET', '/');
-  response.status = 404;
+app.get('/api*', (req: any, res: any) => {
+  const response = new ServerResponse('GET', '/api');
+  response.status = 401;
   res.status(response.status).json(response.json);
 });
 
-app.get('/*', (req: any, res: any) => {
-  const response = new ServerResponse('GET', '/api');
-  response.status = 401;
+app.get('/', (req: Request, res: any) => {
+  const response = new ServerResponse('GET', '/');
+  response.status = 202;
+  res.status(response.status).json(response.json);
+});
+
+app.get('/*', (req: Request, res: any) => {
+  const response = new ServerResponse('GET', '/*');
+  response.status = 404;
   res.status(response.status).json(response.json);
 });
 

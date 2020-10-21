@@ -18,6 +18,7 @@ export default class ServerResponse {
   static ALLOWED_STATUS: Map<number, string> = new Map([
     [200, 'OK'],
     [201, 'CREATED'],
+    [202, 'ACCEPTED'],
     [204, 'NO_CONTENT'],
     [400, 'BAD_REQUEST'],
     [401, 'UNAUTHORIZED'],
