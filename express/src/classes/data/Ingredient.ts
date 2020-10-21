@@ -1,9 +1,9 @@
 'use strict';
 
-import DataScheme from "./DataScheme";
+import {DataScheme, SchemeJSON} from "./DataScheme";
 import Grocery from "./Grocery";
 
-export interface IngredientJSON {
+export interface IngredientJSON extends SchemeJSON {
   id: number,
   amount: number,
   unit: string,

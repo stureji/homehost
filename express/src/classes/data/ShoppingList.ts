@@ -1,11 +1,11 @@
 'use strict';
 
-import DataScheme from './DataScheme';
+import {DataScheme, SchemeJSON} from './DataScheme';
 import Grocery from './Grocery';
 import Ingredient from './Ingredient';
 import ShoppingListEntry from '../ShoppingListEntry';
 
-export interface ShoppingListJSON {
+export interface ShoppingListJSON extends SchemeJSON {
   checked: boolean,
   grocery: string
 }

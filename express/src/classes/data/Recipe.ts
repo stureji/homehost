@@ -3,9 +3,9 @@
 import Ingredient, { IngredientJSON } from "./Ingredient";
 import ShoppingList from "./ShoppingList";
 import ShoppingListEntry from "../ShoppingListEntry";
-import DataScheme from './DataScheme';
+import {DataScheme, SchemeJSON} from './DataScheme';
 
-export interface RecipeJSON {
+export interface RecipeJSON extends SchemeJSON {
   id: number,
   name: string,
   ingredients: IngredientJSON[],
