@@ -19,6 +19,7 @@ export default class ServerResponse {
     [500, 'INTERNAL_SERVER_ERROR']
   ]);
 
+  private didLog = false;
   _json: ServerResponseJSON;
 
   constructor(log: string = '') {
@@ -29,6 +30,7 @@ export default class ServerResponse {
 
     if(log.length > 0) {
       console.log(log);
+      this.didLog = true;
     }
   }
 
@@ -61,6 +63,9 @@ export default class ServerResponse {
   get json(): ServerResponseJSON {
     // There should be guard syntax for js!!!
     const status: number = this._json.status;
+    if(this.didLog) {
+      console.log('RESPONDING');
+    }
     if(status >= 100 && status < 700) {
       if(status >= 100 && status < 200) {
         return this.onInfo();
