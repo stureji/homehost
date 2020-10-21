@@ -1,6 +1,8 @@
 <template>
+<div>
   <code class="info" v-if="loading">Logging in user with id: {{ id }}...</code>
   <code class="error" v-if="error">ERROR</code>
+</div>
 </template>
 
 <script>

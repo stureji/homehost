@@ -1,6 +1,6 @@
 <template>
-  <UserList v-if="!isLogged" />
-  <User v-else />
+<UserList v-if="!isLogged" />
+<User v-else />
 </template>
 
 <script>

@@ -1,10 +1,12 @@
 <template>
+<div>
   <NavBar />
   <div id="page-content" v-if="!loading && data && data.length">
     <h2 class="recipe-heading">{{ data.name }}</h2>
     <p>{{ data.instructions }}</p>
     <pre>{{ data }}</pre>
   </div>
+</div>
 </template>
 
 <script>

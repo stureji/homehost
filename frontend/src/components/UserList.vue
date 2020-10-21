@@ -1,4 +1,5 @@
 <template>
+<div>
   <h1 class="center">Select a user to login:</h1>
   <div class="flex-container" v-if="!loading && data && data.length">
     <a class="profile" v-for="user of data" :key="user.id" :href="'/login/' + user.id">
@@ -13,6 +14,7 @@
   <div v-if="error">
     <code class="error fade-in">An error occured!</code>
   </div>
+</div>
 </template>
 
 <script>

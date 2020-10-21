@@ -1,6 +1,8 @@
 <template>
+<div>
   <NavBar />
   <RecipeList />
+</div>
 </template>
 
 <script>

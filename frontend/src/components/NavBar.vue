@@ -1,11 +1,11 @@
 <template>
-  <nav v-if="isLogged">
-    <ul>
-      <router-link to="/shoplist" ><li>Shopping List</li></router-link>
-      <router-link to="/recipes" ><li>Recipes</li></router-link>
-      <router-link to="/" ><li>UserPanel</li></router-link>
-    </ul>
-  </nav>
+<nav v-if="isLogged">
+  <ul>
+    <router-link to="/shoplist" ><li>Shopping List</li></router-link>
+    <router-link to="/recipes" ><li>Recipes</li></router-link>
+    <router-link to="/" ><li>UserPanel</li></router-link>
+  </ul>
+</nav>
 </template>
 
 <script>

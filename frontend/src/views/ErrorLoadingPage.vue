@@ -1,9 +1,9 @@
 <template>
-  <div class="error-box">
-    <h2 class="error-title">ERROR!</h2>
-    <p class="error-message">Could not connect to server backend. Make sure it is up and paths are configured right.</p>
-    <p class="error-message" @click="goHome"><span style="text-decoration: underline">Click here to return to home</span></p>
-  </div>
+<div class="error-box">
+  <h2 class="error-title">ERROR!</h2>
+  <p class="error-message">Could not connect to server backend. Make sure it is up and paths are configured right.</p>
+  <p class="error-message" @click="goHome"><span style="text-decoration: underline">Click here to return to home</span></p>
+</div>
 </template>
 
 <script>

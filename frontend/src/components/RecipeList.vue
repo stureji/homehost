@@ -1,4 +1,5 @@
 <template>
+<div>
   <div id="search-container">
     <input id="search-bar" type="search"
     autocomplete="off" placeholder="Sök efter recept"
@@ -17,6 +18,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
