@@ -3,6 +3,7 @@ import Grocery from '../classes/data/Grocery';
 import Ingredient from '../classes/data/Ingredient';
 import Recipe from '../classes/data/Recipe';
 import Section from '../classes/data/Section';
+import ServerResponse from '../classes/ServerResponse';
 const app = module.exports = express();
 
 
@@ -49,15 +50,13 @@ const sandwichInstructions = "Skiva bröded i skivor. Sätt på osten och sedan 
 const sandwich = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
 
 app.get('/api/recipe/all', (req: any, res: any) => {
-  const mockCollection = new Array<Recipe>();
+  const response = new ServerResponse('GET', '/api/recipe/all');
+  const mockCollection: Recipe[] = new Array<Recipe>();
   mockCollection.push(pastaCarbonara);
   mockCollection.push(sandwich);
+  response.data = mockCollection;
 
-  res.status(200).json({
-    status: 200,
-    message: "OK",
-    data: mockCollection.map( r => r.toJson())
-  });
+  res.status(response.status).json(response.json);
 });
 
 app.get('/api/recipe/', (req: any, res: any) => {

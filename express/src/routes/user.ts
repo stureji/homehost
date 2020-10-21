@@ -29,9 +29,9 @@ app.get('/api/user', async (req: any, res: any) => {
   res.status(response.status).json(response.json);
 });
 
-app.get('/api/user/login', (req: any, res:any) => {
+app.get('/api/user/login*', (req: any, res:any) => {
   const response = new ServerResponse('GET', '/api/user/login');
-  res.status(400).json(response.json);
+  res.status(response.status).json(response.json);
 });
 
 app.post('/api/user/login', async (req: any, res: any) => {
