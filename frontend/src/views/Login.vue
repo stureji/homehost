@@ -49,19 +49,13 @@ export default {
     onMounted(async () => {
       postLogin(id).then(() => {
         if(successfulLoginAttempt) {
-          console.log('Logging this user:');
-          console.log(data)
           const storeLoggedIn = userStore.login({
             id: data.id,
             username: data.username
           });
           if(storeLoggedIn) {
-            console.log('Store logged in!')
             router.push('/');
-          } else {
-            console.log("Store did not log in")
           }
-
         }
       });
     });
