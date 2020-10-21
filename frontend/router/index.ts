@@ -4,7 +4,7 @@ import Login from '@/views/Login.vue';
 import NotFound from '@/views/NotFound.vue';
 import ShoppingList from '@/views/ShoppingList.vue';
 import Recipes from '@/views/Recipes.vue';
-import ErrorLoadingPage from '@/views/ErrorLoadingPage.vue';
+import Error from '@/components/Error.vue';
 import Recipe from '@/components/Recipe.vue';
 
 const routes = [
@@ -35,8 +35,8 @@ const routes = [
   },
   {
     path: '/500',
-    name: 'ErrorLoadingPage',
-    component: ErrorLoadingPage
+    name: 'Error',
+    component: Error
   },
   {
     path: '/404',

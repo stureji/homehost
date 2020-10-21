@@ -1,13 +1,33 @@
 <template>
 <div id="app">
-  <router-view />
+  <Error v-if="error.status > 299" />
+  <router-view v-else />
 </div>
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+import Error from '@/components/Error.vue';
 export default {
   setup() {
+    const error = ref({status: Number});
+
+    onMounted(async () => {
+      const backend = await fetch(process.env.VUE_APP_BACKEND, {
+        method: 'get',
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+
+      if(backend.status != 202){
+        error.value = backend.status;
+      }
+    });
+
     return {
+      Error,
+      error
     }
   }
 }
