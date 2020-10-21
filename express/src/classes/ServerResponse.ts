@@ -41,7 +41,7 @@ export default class ServerResponse {
     };
 
     if(this.log()) {
-      console.log('-> |: ' + this.method + ' '.repeat(8 - this.method.length) + this.uri);
+      console.log('-> |: ' + this.method + ' '.repeat(Math.max(8 - this.method.length, 1)) + this.uri);
     }
   }
 
@@ -78,8 +78,8 @@ export default class ServerResponse {
     // There should be guards in js imo, like scala or haskell
     const status: number = this._json.status;
     if(this.log()) {
-      console.log('<- |: ' + this.method + ' '.repeat(8 - this.method.length) + this.uri +
-      ' '.repeat(24 - this.method.length - this.uri.length) + status + ' ' + this._json.message);
+      console.log('<- |: ' + this.method + ' '.repeat(Math.max(8 - this.method.length, 1)) + this.uri +
+      ' '.repeat(Math.max(24 - this.method.length - this.uri.length, 1)) + status + ' ' + this._json.message);
     }
     if(status >= 100 && status < 700) {
       if(status >= 100 && status < 200) {

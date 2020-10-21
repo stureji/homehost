@@ -35,10 +35,12 @@ app.get('/api/user/login*', (req: any, res:any) => {
 });
 
 app.post('/api/user/login', async (req: any, res: any) => {
-  const requestId = parseInt(req.body.id);
-  const response = new ServerResponse('GET', '/api/user/login/' + requestId);
+  // parseFloat to remove scientific notation
+  const requestId = parseFloat(req.body.id);
+  const response = new ServerResponse('POST', '/api/user/login/' + requestId);
 
-  if(requestId != undefined && requestId != null && requestId > 0) {
+  // should not be null, undefined and should be positve. requestId % 1 == 0 ensures non-decimal
+  if(requestId != undefined && requestId != null && requestId > 0 && requestId % 1 == 0) {
     const data: User[] = await pool.connect().then((connection) => {
       if(connection) {
         return pool.query<{user_id: number, username: string}>('SELECT user_id, username FROM users WHERE user_id = $1', [requestId]);
