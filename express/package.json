@@ -1,10 +1,10 @@
 {
   "name": "homehost-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "./dist/server.js",
   "repository": "https://github.com/stureji/homehost",
   "author": "Erik Nord",
-  "license": "none",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
