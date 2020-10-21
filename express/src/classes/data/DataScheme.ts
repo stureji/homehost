@@ -1,10 +1,10 @@
 export interface SchemeJSON {
-  field?: any
+  field?: any;
 }
 
 export interface DataScheme<T extends SchemeJSON | SchemeJSON[]> {
 
-  display(): string
+  display(): string;
 
-  toJson(): T
+  toJson(): T;
 }
