@@ -1,12 +1,12 @@
 'use strict';
 
 import test from 'ava';
-import User from '../../../classes/data/User';
-import Grocery from '../../../classes/data/Grocery';
-import Ingredient from '../../../classes/data/Ingredient';
-import Recipe from '../../../classes/data/Recipe';
-import Section from '../../../classes/data/Section';
-import ShoppingList from '../../../classes/data/ShoppingList';
+import User from '../../../src/classes/data/User';
+import Grocery from '../../../src/classes/data/Grocery';
+import Ingredient from '../../../src/classes/data/Ingredient';
+import Recipe from '../../../src/classes/data/Recipe';
+import Section from '../../../src/classes/data/Section';
+import ShoppingList from '../../../src/classes/data/ShoppingList';
 
 
 const cheeseSection = new Section(7, 'Ostar');

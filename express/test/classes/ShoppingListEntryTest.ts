@@ -2,9 +2,9 @@
 
 import test from 'ava';
 
-import Grocery from '../../classes/data/Grocery';
-import Section from '../../classes/data/Section';
-import ShoppingListEntry from '../../classes/ShoppingListEntry';
+import Grocery from '../../src/classes/data/Grocery';
+import Section from '../../src/classes/data/Section';
+import ShoppingListEntry from '../../src/classes/ShoppingListEntry';
 
 const tomato = new Grocery(11, 'Tomatoes', new Section(0, ''));
 

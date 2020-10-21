@@ -1,8 +1,8 @@
 'use strict';
 
 import test from 'ava';
-import Grocery from '../../../classes/data/Grocery';
-import Section from '../../../classes/data/Section';
+import Grocery from '../../../src/classes/data/Grocery';
+import Section from '../../../src/classes/data/Section';
 
 const s = new Section(0, 'Vegtables');
 
