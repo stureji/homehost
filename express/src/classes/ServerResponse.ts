@@ -19,10 +19,10 @@ export default class ServerResponse {
     [500, 'INTERNAL_SERVER_ERROR']
   ]);
 
-  #json: ServerResponseJSON;
+  _json: ServerResponseJSON;
 
   constructor() {
-    this.#json = {
+    this._json = {
       status: 400,
       message: 'BAD_REQUEST'
     };
@@ -30,14 +30,16 @@ export default class ServerResponse {
 
   set status(code: number) {
     if(ServerResponse.ALLOWED_STATUS.has(code)) {
-      this.#json.status = code;
-      this.#json.message = ServerResponse.ALLOWED_STATUS.get(code);
+      this._json.status = code;
+      this._json.message = ServerResponse.ALLOWED_STATUS.get(code);
+    } else {
+      throw new Error('HTTP Status code [' + code + '] not supported!!!');
     }
   }
 
   set data(value: DataScheme<SchemeJSON>[] | null | undefined) {
     if(value != null && value != undefined) {
-      this.#json.data = value.map(d => d.toJson());
+      this._json.data = value.map(d => d.toJson());
       this.status = 200;
     } else {
       this.status = 204;
@@ -45,14 +47,52 @@ export default class ServerResponse {
   }
 
   set error(error: Error) {
-    this.#json.error = error.message;
+    this._json.error = error.message;
   }
 
   get json(): ServerResponseJSON {
-    if(this.#json.status < 500) {
-      return (({status, message, data}) => ({status, message, data}))(this.#json);
+    // There should be guard syntax for js!!!
+    const status: number = this._json.status;
+    if(status >= 100 && status < 700) {
+      if(status >= 100 && status < 200) {
+        return this.onInfo();
+      } else if(status >= 200 && status < 300) {
+        return this.onSucces();
+      } else if(status >= 300 && status < 400) {
+        return this.onRedirect();
+      } else if(status >= 400 && status < 500) {
+        return this.onClientError();
+      } else if(status >= 500 && status < 600) {
+        return this.onServerError();
+      }else {
+        return this.onIllegalRange();
+      }
     } else {
-      return (({status, message, error}) => ({status, message, error}))(this.#json);
+      return this.onIllegalRange();
     }
+  }
+
+  public onInfo(): ServerResponseJSON {
+    return (({status, message}) => ({status, message}))(this._json);
+  }
+
+  public onSucces(): ServerResponseJSON {
+    return (({status, message, data}) => ({status, message, data}))(this._json);
+  }
+
+  public onRedirect(): ServerResponseJSON {
+    return (({status, message}) => ({status, message}))(this._json);
+  }
+
+  public onClientError(): ServerResponseJSON {
+    return (({status, message, error}) => ({status, message, error}))(this._json);
+  }
+
+  public onServerError(): ServerResponseJSON {
+    return (({status, message}) => ({status, message}))(this._json);
+  }
+
+  public onIllegalRange(): ServerResponseJSON {
+    return {status: 500, message: "INTERNAL_SERVER_ERROR"};
   }
 }
