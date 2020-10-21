@@ -7,6 +7,13 @@ interface ServerResponseJSON {
   error?: string | null
 }
 
+/**
+ * Create a ServerResponse at the moment when you intend to handle an incoming HTTP request. Later, when you
+ * wish to send the HTTP request, call for its json object. ServerResponse will automatically set status
+ * codes depending on how you handle the object, ensuring correct HTTP response status codes and response
+ * status messages gets sent to the clients. You can always override the automatic status code and the hooks
+ * that decide return behaviour.
+ */
 export default class ServerResponse {
   static ALLOWED_STATUS: Map<number, string> = new Map([
     [200, 'OK'],
@@ -19,32 +26,38 @@ export default class ServerResponse {
     [500, 'INTERNAL_SERVER_ERROR']
   ]);
 
-  private didLog = false;
+  private method: string;
+  private uri: string;
+  private log = () => { return this.method.length < 8 && this.method.length > 0 && this.uri.length > 0; }
   _json: ServerResponseJSON;
 
-  constructor(log: string = '') {
+  constructor(method:string = '', uri: string = '') {
+    this.method = method.toUpperCase();
+    this.uri = uri.toLocaleLowerCase();
     this._json = {
       status: 400,
       message: 'BAD_REQUEST'
     };
 
-    if(log.length > 0) {
-      console.log(log);
-      this.didLog = true;
-    }
-  }
-
-  set status(code: number) {
-    if(ServerResponse.ALLOWED_STATUS.has(code)) {
-      this._json.status = code;
-      this._json.message = ServerResponse.ALLOWED_STATUS.get(code);
-    } else {
-      throw new Error('HTTP Status code [' + code + '] not supported!!!');
+    if(this.log()) {
+      console.log('->|' + this.method + ' '.repeat(8 - this.method.length) + this.uri);
     }
   }
 
   get status() {
     return this._json.status;
+  }
+
+  /**
+   * Sets the status to one of the supproted codes. Throws error if not allowed to set specific status code.
+   */
+  set status(code: number) {
+    if(ServerResponse.ALLOWED_STATUS.has(code)) {
+      this._json.status = code;
+      this._json.message = ServerResponse.ALLOWED_STATUS.get(code);
+    } else {
+      throw new Error('HTTP Status code [' + code + '] not supported!');
+    }
   }
 
   set data(value: DataScheme<SchemeJSON>[] | null | undefined) {
@@ -61,10 +74,10 @@ export default class ServerResponse {
   }
 
   get json(): ServerResponseJSON {
-    // There should be guard syntax for js!!!
+    // There should be guards in js imo, like scala or haskell
     const status: number = this._json.status;
-    if(this.didLog) {
-      console.log('RESPONDING');
+    if(this.log()) {
+      console.log('<-|' + this.method + ' '.repeat(8 - this.method.length) + this.uri);
     }
     if(status >= 100 && status < 700) {
       if(status >= 100 && status < 200) {
@@ -85,6 +98,7 @@ export default class ServerResponse {
     }
   }
 
+  // These functions could be overridden by subclasses making room for decorative design patterns
   public onInfo(): ServerResponseJSON {
     return (({status, message}) => ({status, message}))(this._json);
   }

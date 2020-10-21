@@ -107,3 +107,23 @@ test('ServerResponse: sending 404 code', t => {
   t.is(res.error, undefined, 'expect undefined');
   t.is(JSON.stringify(res), '{"status":404,"message":"NOT_FOUND"}', 'stringify equal to expected');
 });
+
+test('ServerResponse: throws error on bad code setter', t => {
+  const response = new ServerResponse();
+  const error1 = t.throws(() => {response.status = 1337}, {instanceOf: Error},
+  'bad status code should throw exception');
+  t.is(error1.message, 'HTTP Status code [1337] not supported!',
+  'throw error should have nice error message');
+  const error2 = t.throws(() => {response.status = 42}, {instanceOf: Error},
+  'bad status code should throw exception');
+  t.is(error2.message, 'HTTP Status code [42] not supported!',
+  'throw error should have nice error message');
+  const error3 = t.throws(() => {response.status = -1352645356356}, {instanceOf: Error},
+  'bad status code should throw exception');
+  t.is(error3.message, 'HTTP Status code [-1352645356356] not supported!',
+  'throw error should have nice error message');
+  const error4 = t.throws(() => {response.status = 0}, {instanceOf: Error},
+  'bad status code should throw exception');
+  t.is(error4.message, 'HTTP Status code [0] not supported!',
+  'throw error should have nice error message');
+});
