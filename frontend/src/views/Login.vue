@@ -1,5 +1,6 @@
 <template>
-  <code class="info">Logging in user with id: {{ id }}...</code>
+  <code class="info" v-if="loading">Logging in user with id: {{ id }}...</code>
+  <code class="error" v-if="error">ERROR</code>
 </template>
 
 <script>
@@ -13,7 +14,7 @@ export default {
     const url = window.location.href.split('/');
     const id = url[url.length - 1];
 
-    const data = ref(null);
+    let data = {};
     const loading = ref(false);
     const error = ref(null);
     let successfulLoginAttempt = false;
@@ -36,7 +37,7 @@ export default {
         return res.json();
       }).then((json) => {
         successfulLoginAttempt = true;
-        data.value = json.data;
+        data = json.data[0];
       }).catch((e) => {
         error.value = e;
         router.push('/500');
@@ -48,10 +49,11 @@ export default {
     onMounted(async () => {
       postLogin(id).then(() => {
         if(successfulLoginAttempt) {
-          const json = JSON.parse(data.value);
+          console.log('Logging this user:');
+          console.log(data)
           const storeLoggedIn = userStore.login({
-            id: json.id,
-            username: json.username
+            id: data.id,
+            username: data.username
           });
           if(storeLoggedIn) {
             console.log('Store logged in!')
