@@ -32,7 +32,7 @@ app.get('/api/user', async (req: any, res: any) => {
     }
   }).catch((error) => {
     console.log(error);
-    console.log("HTTP RESPONSE: 400 BAD_REQUEST");
+    console.log("HTTP RESPONSE: 500 INTERNAL_SERVER_ERROR");
     return [];
   });
 
@@ -55,7 +55,7 @@ app.get('/api/user/login', (req: any, res:any) => {
 
 app.post('/api/user/login', async (req: any, res: any) => {
   const requestId = parseInt(req.body.id);
-  console.log('HTTP POST  /api/user/login' + requestId);
+  console.log('HTTP POST  /api/user/login/' + requestId);
   let status = 401;
   let message = "UNAUTHORIZED";
   let data = JSON.stringify({});
@@ -71,12 +71,16 @@ app.post('/api/user/login', async (req: any, res: any) => {
       if(dbresult.rowCount == 1) {
         status = 200;
         message = "OK";
+        console.log("HTTP RESPONSE: 200 OK");
         return new User(dbresult.rows[0].user_id, dbresult.rows[0].username);
       } else {
         throw new Error('Authorization failed');
       }
     }).catch((error) => {
       console.log(error);
+      status = 500;
+      message = "INTERNAL_SERVER_ERROR";
+      console.log("HTTP RESPONSE: 500 INTERNAL_SERVER_ERROR");
       return undefined;
     });
 
@@ -86,6 +90,7 @@ app.post('/api/user/login', async (req: any, res: any) => {
   } else {
     status = 400;
     message = "BAD_REQUEST"
+    console.log('HTTP RESPONSE: 400 BAD_REQUEST');
   }
 
   res.status(status).json({
