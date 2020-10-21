@@ -21,11 +21,15 @@ export default class ServerResponse {
 
   _json: ServerResponseJSON;
 
-  constructor() {
+  constructor(log: string = '') {
     this._json = {
       status: 400,
       message: 'BAD_REQUEST'
     };
+
+    if(log.length > 0) {
+      console.log(log);
+    }
   }
 
   set status(code: number) {
@@ -35,6 +39,10 @@ export default class ServerResponse {
     } else {
       throw new Error('HTTP Status code [' + code + '] not supported!!!');
     }
+  }
+
+  get status() {
+    return this._json.status;
   }
 
   set data(value: DataScheme<SchemeJSON>[] | null | undefined) {
