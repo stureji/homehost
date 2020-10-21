@@ -1,10 +1,10 @@
-import DataScheme from "./data/DataScheme";
+import {DataScheme, SchemeJSON} from "./data/DataScheme";
 
 interface ServerResponseJSON {
   status: number,
   message: string | undefined,
-  data?: Object[] | [],
-  error?: string | undefined
+  data?: object[] | [],
+  error?: string | null
 }
 
 export default class ServerResponse {
@@ -19,10 +19,10 @@ export default class ServerResponse {
     [500, 'INTERNAL_SERVER_ERROR']
   ]);
 
-  private json: ServerResponseJSON;
+  #json: ServerResponseJSON;
 
   constructor() {
-    this.json = {
+    this.#json = {
       status: 400,
       message: 'BAD_REQUEST'
     };
@@ -30,16 +30,29 @@ export default class ServerResponse {
 
   set status(code: number) {
     if(ServerResponse.ALLOWED_STATUS.has(code)) {
-      this.json.status = code;
-      this.json.message = ServerResponse.ALLOWED_STATUS.get(code);
+      this.#json.status = code;
+      this.#json.message = ServerResponse.ALLOWED_STATUS.get(code);
     }
   }
 
-  set data(data: DataScheme<JSON>[]) {
-    this.json.data = data.map(d => d.toJson());
+  set data(value: DataScheme<SchemeJSON>[] | null | undefined) {
+    if(value != null && value != undefined) {
+      this.#json.data = value.map(d => d.toJson());
+      this.status = 200;
+    } else {
+      this.status = 204;
+    }
   }
 
-  toJson(): ServerResponseJSON {
-    return this.json;
+  set error(error: Error) {
+    this.#json.error = error.message;
+  }
+
+  get json(): ServerResponseJSON {
+    if(this.#json.status < 500) {
+      return (({status, message, data}) => ({status, message, data}))(this.#json);
+    } else {
+      return (({status, message, error}) => ({status, message, error}))(this.#json);
+    }
   }
 }
