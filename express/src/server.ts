@@ -10,7 +10,7 @@ require('dotenv').config();
 
 /* Middleware */
 
-const app = express();
+export const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,13 +30,13 @@ endpoints.forEach(e => app.use(e));
 /* Root end point */
 
 app.get('/', (req:any, res:any) => {
-  const response = new ServerResponse('HTTP GET   /');
+  const response = new ServerResponse('GET', '/');
   response.status = 404;
   res.status(response.status).json(response.json);
 });
 
 app.get('/api', (req: any, res: any) => {
-  const response = new ServerResponse('HTTP GET   /api');
+  const response = new ServerResponse('GET', '/api');
   response.status = 200;
   res.status(response.status).json(response.json);
 });

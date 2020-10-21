@@ -5,7 +5,7 @@ import ServerResponse from '../classes/ServerResponse';
 const app = module.exports = express();
 
 app.get('/api/user', async (req: any, res: any) => {
-  const response = new ServerResponse('HTTP GET   /api/user');
+  const response = new ServerResponse('GET', '/api/user');
 
   response.data = await pool.connect().then((connection) => {
     if(connection) {
@@ -30,13 +30,13 @@ app.get('/api/user', async (req: any, res: any) => {
 });
 
 app.get('/api/user/login', (req: any, res:any) => {
-  const response = new ServerResponse('HTTP GET   /api/user/login');
+  const response = new ServerResponse('GET', '/api/user/login');
   res.status(400).json(response.json);
 });
 
 app.post('/api/user/login', async (req: any, res: any) => {
   const requestId = parseInt(req.body.id);
-  const response = new ServerResponse('HTTP POST  /api/user/login/' + requestId);
+  const response = new ServerResponse('GET', '/api/user/login/' + requestId);
 
   if(requestId != undefined && requestId != null && requestId > 0) {
     const data: User[] = await pool.connect().then((connection) => {

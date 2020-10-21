@@ -49,7 +49,6 @@ const sandwichInstructions = "Skiva bröded i skivor. Sätt på osten och sedan 
 const sandwich = new Recipe(2, 'Smörgås', sandwichIngredients, sandwichInstructions);
 
 app.get('/api/recipe/all', (req: any, res: any) => {
-  console.log('HTTP GET   /api/recipe/all');
   const mockCollection = new Array<Recipe>();
   mockCollection.push(pastaCarbonara);
   mockCollection.push(sandwich);
@@ -62,7 +61,6 @@ app.get('/api/recipe/all', (req: any, res: any) => {
 });
 
 app.get('/api/recipe/', (req: any, res: any) => {
-  console.log('HTTP GET   /api/recipe');
   let status = 400;
   let message = "BAD REQUEST";
   let data = undefined;
