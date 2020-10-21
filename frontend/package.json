@@ -42,9 +42,6 @@
     ],
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
-    },
-    "rules": {
-      "vue/no-multiple-template-root": "off"
     }
   },
   "browserslist": [
