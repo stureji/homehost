@@ -60,11 +60,11 @@ export default {
       }).then(() => {
         loading.value = false;
       });
-    }
+    };
 
     const sortData = () => {
       data.value.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    };
 
     const reactiveInput = (input) => {
       if(input == '') {
@@ -74,11 +74,11 @@ export default {
         searchResult.value = readonly(data).value.filter( r => r.name.toLowerCase().includes(input.toLowerCase()))
         stage.value = searchResult.value;
       }
-    }
+    };
 
-    const routeTo = (key) => {
-      router.push('/recipe/' + key)
-    }
+    const routeTo = (id) => {
+      router.push({ name: 'Recipe', params: {id: id}});
+    };
 
     onMounted(() => {
       fetchData();

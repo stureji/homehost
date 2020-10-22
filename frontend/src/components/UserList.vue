@@ -46,7 +46,7 @@ export default {
         data.value = json.data;
       }).catch((e) => {
         error.value = e;
-        router.push('/500');
+        router.push('/error');
       }).then(() => {
         loading.value = false;
       });

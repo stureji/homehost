@@ -1,24 +1,23 @@
 <template>
 <div>
-  <NavBar />
-  <div id="page-content" v-if="!loading && data && data.length">
-    <h2 class="recipe-heading">{{ data.name }}</h2>
+  <h2 v-if="loading">{{loading}}</h2>
+  <div id="page-content" v-if="!loading && data">
+    <h2 class="recipe-heading" @click="routeToAll()">{{ data.name }}</h2>
     <p>{{ data.instructions }}</p>
-    <pre>{{ data }}</pre>
   </div>
 </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import NavBar from '@/components/NavBar';
 
 export default {
   setup() {
     const router = useRouter();
-    const url = window.location.href.split('/');
-    const id = url[url.length - 1];
+    const route = useRoute();
+    const recipeIdInRoute = computed(() => route.params.id);
 
     const data = ref(null);
     const loading = ref(false);
@@ -27,7 +26,7 @@ export default {
     const fetchData = () => {
       loading.value = true;
 
-      return fetch(process.env.VUE_APP_API + '/recipe/?id=' + id, {
+      return fetch(process.env.VUE_APP_API + '/recipe/?id=' + recipeIdInRoute.value, {
         method: 'get',
         headers: {
           "content-type": "application/json"
@@ -41,7 +40,6 @@ export default {
 
         return res.json()
       }).then((json) => {
-        console.log(json.data)
         data.value = json.data;
       }).catch((e) => {
         error.value = e;
@@ -55,11 +53,16 @@ export default {
       fetchData();
     });
 
+    const routeToAll = () => {
+      router.push({ name: 'Recipes', params: { id: -1}});
+    };
+
     return {
       NavBar,
       data,
       loading,
-      error
+      error,
+      routeToAll
     }
   }
 }
