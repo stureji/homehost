@@ -1,13 +1,11 @@
-import { createWebHistory, createRouter } from 'vue-router';
+import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router';
 import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
 import NotFound from '@/views/NotFound.vue';
 import ShoppingList from '@/views/ShoppingList.vue';
 import Recipes from '@/views/Recipes.vue';
-import Error from '@/components/Error.vue';
-import Recipe from '@/components/Recipe.vue';
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
@@ -31,12 +29,7 @@ const routes = [
   {
     path: '/recipe/:id',
     name: 'Recipe',
-    component: Recipe
-  },
-  {
-    path: '/500',
-    name: 'Error',
-    component: Error
+    component: () => import('@/views/Recipes.vue')
   },
   {
     path: '/404',
