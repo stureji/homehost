@@ -43,7 +43,7 @@ export default {
         data.value = json.data;
       }).catch((e) => {
         error.value = e;
-        router.push('/');
+        router.push({ name: 'Error', params: { status: error.value.status, message: error.value.message }});
       }).then(() => {
         loading.value = false;
       });

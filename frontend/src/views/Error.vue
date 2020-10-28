@@ -1,27 +1,33 @@
 <template>
 <div class="error-box">
-  <h2 class="error-title">ERROR!</h2>
-  <p class="error-message">Could not connect to server backend. Make sure it is up and paths are configured right.</p>
+  <h2 class="error-title">ERROR {{ status }}</h2>
+  <p class="error-message">{{ message }}</p>
+  <p class="error-message" v-if="message === 'Failed to fetch'">Could not connect to server backend. Make sure it is up and paths are configured right.</p>
   <p class="error-message" @click="goHome"><span style="text-decoration: underline">Click here to return to home</span></p>
 </div>
 </template>
 
 <script>
 import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 export default {
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const goHome = () => {
       router.push('/');
     }
+    const status = route.params.status;
+    const message = route.params.message;
 
     onMounted(() => {
       window.history.pushState('', 'Error', '/');
     });
 
     return {
-      goHome
+      goHome,
+      status,
+      message
     }
   }
 }

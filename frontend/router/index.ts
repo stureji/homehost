@@ -33,18 +33,13 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/Recipes.vue')
   },
   {
-    path: '/404',
-    name: 'Not Found',
-    component: NotFound
-  },
-  {
     path: '/error',
     name: 'Error',
     component: Error
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/404'
+    redirect: { name: 'Error', params: { status: 404, message: 'Not found' }}
   }
 ];
 
