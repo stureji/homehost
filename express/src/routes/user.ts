@@ -15,9 +15,9 @@ app.get('/api/user', async (req: any, res: any) => {
     } else {
       throw new Error('Could not connect to database.');
     }
-  }).then((dbresult) => {
-    if(dbresult.rowCount > 0) {
-      return dbresult.rows.map( r => {
+  }).then((res) => {
+    if(res.rowCount > 0) {
+      return res.rows.map( r => {
         return new User(r.user_id, r.username, r.shoplist);
       });
     } else {
@@ -45,13 +45,15 @@ app.post('/api/user/login', async (req: any, res: any) => {
   if(requestId != undefined && requestId != null && requestId > 0 && requestId % 1 == 0) {
     const data: User[] = await pool.connect().then((connection) => {
       if(connection) {
-        return pool.query<{user_id: number, username: string}>('SELECT user_id, username FROM users WHERE user_id = $1', [requestId]);
+        const queryResult = pool.query<{user_id: number, username: string}>('SELECT user_id, username FROM users WHERE user_id = $1', [requestId]);
+        connection.release();
+        return queryResult;
       } else {
         throw new Error('Could not connect to database.');
       }
-    }).then((dbresult) => {
-      if(dbresult.rowCount == 1) {
-        return [new User(dbresult.rows[0].user_id, dbresult.rows[0].username)];
+    }).then((res) => {
+      if(res.rowCount == 1) {
+        return [new User(res.rows[0].user_id, res.rows[0].username)];
       } else {
         return [];
       }
