@@ -56,7 +56,7 @@ export default {
         stage.value = json.data;
       }).catch((e) => {
         error.value = e;
-        router.push('/');
+        router.push({ name: 'Error', params: { code: error.value.code, message: error.value.message }});
       }).then(() => {
         loading.value = false;
       });

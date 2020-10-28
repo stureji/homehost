@@ -4,6 +4,7 @@ import Login from '@/views/Login.vue';
 import NotFound from '@/views/NotFound.vue';
 import ShoppingList from '@/views/ShoppingList.vue';
 import Recipes from '@/views/Recipes.vue';
+import Error from '@/views/Error.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -35,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/404',
     name: 'Not Found',
     component: NotFound
+  },
+  {
+    path: '/error',
+    name: 'Error',
+    component: Error
   },
   {
     path: '/:pathMatch(.*)*',

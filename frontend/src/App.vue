@@ -1,13 +1,13 @@
 <template>
 <div id="app">
-  <Error v-if="error.status > 299" />
+  <Error v-if="error.status >= 300" />
   <router-view v-else />
 </div>
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
-import Error from '@/components/Error.vue';
+import Error from '@/views/Error.vue';
 export default {
   setup() {
     const error = ref({status: Number});
