@@ -9,7 +9,9 @@ app.get('/api/user', async (req: any, res: any) => {
 
   response.data = await pool.connect().then((connection) => {
     if(connection) {
-      return pool.query('SELECT user_id, username FROM users');
+      const query = pool.query('SELECT user_id, username FROM users');
+      connection.release();
+      return query;
     } else {
       throw new Error('Could not connect to database.');
     }
