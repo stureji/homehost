@@ -45,9 +45,9 @@ app.post('/api/user/login', async (req: any, res: any) => {
   if(requestId != undefined && requestId != null && requestId > 0 && requestId % 1 == 0) {
     const data: User[] = await pool.connect().then((connection) => {
       if(connection) {
-        const queryResult = pool.query<{user_id: number, username: string}>('SELECT user_id, username FROM users WHERE user_id = $1', [requestId]);
+        const query = pool.query('SELECT user_id, username FROM users WHERE user_id = $1', [requestId]);
         connection.release();
-        return queryResult;
+        return query;
       } else {
         throw new Error('Could not connect to database.');
       }

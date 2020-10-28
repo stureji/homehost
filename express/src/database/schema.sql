@@ -10,6 +10,7 @@ CREATE TABLE users(
 CREATE TABLE section(
     section_id INT GENERATED ALWAYS AS IDENTITY,
     section_name TEXT NOT NULL,
+    sorting_order INT,
     PRIMARY KEY(section_id)
 );
 

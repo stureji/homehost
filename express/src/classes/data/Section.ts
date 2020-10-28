@@ -15,10 +15,10 @@ export default class Section implements DataScheme<SectionJSON> {
   #name: string;
   #sort: number;
 
-  constructor(id: number, name: string) {
+  constructor(id: number, name: string, sort: number = Section.DEFAULT_SORT) {
     this.#id = id;
     this.#name = name;
-    this.#sort = Section.DEFAULT_SORT;
+    this.#sort = sort;
   }
 
   get id() {
