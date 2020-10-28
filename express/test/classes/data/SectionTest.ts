@@ -7,10 +7,14 @@ const id = 0;
 const name = 'testname';
 
 test('Section: construction', t => {
-  const s = new Section(id, name);
-  t.assert(s.id === id, 'id is correct');
-  t.assert(s.name === name, 'name is correct');
-  t.assert(s.sort === Section.DEFAULT_SORT, 'sort is correct');
+  const s1 = new Section(id, name);
+  t.assert(s1.id === id, 'id is correct');
+  t.assert(s1.name === name, 'name is correct');
+  t.assert(s1.sort === Section.DEFAULT_SORT, 'sort is correct');
+  const s2 = new Section(id, name, 999);
+  t.assert(s2.id === id, 'id is correct');
+  t.assert(s2.name === name, 'name is correct');
+  t.assert(s2.sort === 999, 'sort is correct');
 });
 
 test('Section: set sort', t => {
