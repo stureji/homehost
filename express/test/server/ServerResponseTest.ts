@@ -1,7 +1,7 @@
 'use strict';
 
 import test from 'ava';
-import ServerResponse from '../../src/providers/ServerResponse';
+import ServerResponse from '../../src/server/ServerResponse';
 import { DataScheme, SchemeJSON } from '../../src/database/schemes/DataScheme';
 
 interface TestJSON extends SchemeJSON {

@@ -1,7 +1,7 @@
 import express  from 'express';
 import { pool } from '../../database/DatabaseConnectionPool';
 import Grocery from '../../database/schemes/Grocery';
-import ServerResponse from '../../providers/ServerResponse';
+import ServerResponse from '../ServerResponse';
 import Section from '../../database/schemes/Section';
 const app = module.exports = express();
 

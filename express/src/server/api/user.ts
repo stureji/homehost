@@ -1,7 +1,7 @@
 import express  from 'express';
 import { pool } from '../../database/DatabaseConnectionPool';
 import User from '../../database/schemes/User';
-import ServerResponse from '../../providers/ServerResponse';
+import ServerResponse from '../ServerResponse';
 const app = module.exports = express();
 
 app.get('/api/user', async (req: any, res: any) => {

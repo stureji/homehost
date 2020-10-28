@@ -3,7 +3,7 @@ import Grocery from '../../database/schemes/Grocery';
 import Ingredient from '../../database/schemes/Ingredient';
 import Recipe from '../../database/schemes/Recipe';
 import Section from '../../database/schemes/Section';
-import ServerResponse from '../../providers/ServerResponse';
+import ServerResponse from '../ServerResponse';
 const app = module.exports = express();
 
 
