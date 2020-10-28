@@ -18,10 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /* Define end points */
 
 const endpoints = Array();
-endpoints.push(require('./routes/grocery'));
-endpoints.push(require('./routes/recipe'));
-endpoints.push(require('./routes/section'));
-endpoints.push(require('./routes/user'));
+endpoints.push(require('./api/grocery'));
+endpoints.push(require('./api/recipe'));
+endpoints.push(require('./api/section'));
+endpoints.push(require('./api/user'));
 
 /* Use the defined endpoints */
 

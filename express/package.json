@@ -1,7 +1,7 @@
 {
   "name": "homehost-server",
   "version": "0.1.0",
-  "main": "./dist/server.js",
+  "main": "./dist/server/index.js",
   "repository": "https://github.com/stureji/homehost",
   "author": "Erik Nord",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "clean-compile": "rimraf dist && tsc",
     "test": "ava",
     "serve": "tsc && nodemon",
-    "start": "tsc && node ./dist/server.js"
+    "start": "tsc && node ./dist/server/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
