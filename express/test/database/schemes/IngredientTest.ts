@@ -1,9 +1,9 @@
 'use strict';
 
 import test from 'ava';
-import Grocery from '../../../src/classes/data/Grocery';
-import Ingredient from '../../../src/classes/data/Ingredient';
-import Section from '../../../src/classes/data/Section';
+import Grocery from '../../../src/database/schemes/Grocery';
+import Ingredient from '../../../src/database/schemes/Ingredient';
+import Section from '../../../src/database/schemes/Section';
 
 const vegtableSection = new Section(0, 'Vegtables');
 const carrot = new Grocery(12, 'Carrots', vegtableSection);

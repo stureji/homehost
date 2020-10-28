@@ -2,7 +2,7 @@
 
 import Ingredient, { IngredientJSON } from "./Ingredient";
 import ShoppingList from "./ShoppingList";
-import ShoppingListEntry from "../ShoppingListEntry";
+import ShoppingListEntry from "./ShoppingListEntry";
 import {DataScheme, SchemeJSON} from './DataScheme';
 
 export interface RecipeJSON extends SchemeJSON {

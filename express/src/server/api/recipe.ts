@@ -1,9 +1,9 @@
 import express  from 'express';
-import Grocery from '../classes/data/Grocery';
-import Ingredient from '../classes/data/Ingredient';
-import Recipe from '../classes/data/Recipe';
-import Section from '../classes/data/Section';
-import ServerResponse from '../classes/ServerResponse';
+import Grocery from '../../database/schemes/Grocery';
+import Ingredient from '../../database/schemes/Ingredient';
+import Recipe from '../../database/schemes/Recipe';
+import Section from '../../database/schemes/Section';
+import ServerResponse from '../../providers/ServerResponse';
 const app = module.exports = express();
 
 

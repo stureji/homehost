@@ -1,7 +1,7 @@
 'use strict';
 
 import test from 'ava';
-import Section from '../../../src/classes/data/Section';
+import Section from '../../../src/database/schemes/Section';
 
 const id = 0;
 const name = 'testname';

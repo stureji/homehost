@@ -1,10 +1,10 @@
 'use strict';
 
 import test from 'ava';
-import Grocery from '../../src/classes/data/Grocery';
-import Section from '../../src/classes/data/Section';
-import ShoppingList from '../../src/classes/data/ShoppingList';
-import ShoppingListEntry from '../../src/classes/ShoppingListEntry';
+import Grocery from '../../../src/database/schemes/Grocery';
+import Section from '../../../src/database/schemes/Section';
+import ShoppingList from '../../../src/database/schemes/ShoppingList';
+import ShoppingListEntry from '../../../src/database/schemes/ShoppingListEntry';
 
 const pastaSection = new Section(2, 'Pastas');
 pastaSection.sort = 2; // sort == id in tests for simplicity

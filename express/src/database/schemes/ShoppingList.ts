@@ -3,7 +3,7 @@
 import {DataScheme, SchemeJSON} from './DataScheme';
 import Grocery from './Grocery';
 import Ingredient from './Ingredient';
-import ShoppingListEntry from '../ShoppingListEntry';
+import ShoppingListEntry from './ShoppingListEntry';
 
 export interface ShoppingListJSON extends SchemeJSON {
   checked: boolean,

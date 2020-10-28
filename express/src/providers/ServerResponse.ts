@@ -1,4 +1,4 @@
-import {DataScheme, SchemeJSON} from "./data/DataScheme";
+import {DataScheme, SchemeJSON} from "../database/schemes/DataScheme";
 
 interface ServerResponseJSON {
   status: number,

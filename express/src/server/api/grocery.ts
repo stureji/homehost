@@ -1,8 +1,8 @@
 import express  from 'express';
-import { pool } from '../database';
-import Grocery from '../classes/data/Grocery';
-import ServerResponse from '../classes/ServerResponse';
-import Section from '../classes/data/Section';
+import { pool } from '../../database/DatabaseConnectionPool';
+import Grocery from '../../database/schemes/Grocery';
+import ServerResponse from '../../providers/ServerResponse';
+import Section from '../../database/schemes/Section';
 const app = module.exports = express();
 
 const GET_ALL_GROCERY_QUERY = '' +

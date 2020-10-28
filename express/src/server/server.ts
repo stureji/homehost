@@ -3,7 +3,7 @@
 /* Imports */
 
 import express  from 'express';
-import ServerResponse from './classes/ServerResponse';
+import ServerResponse from '../providers/ServerResponse';
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();

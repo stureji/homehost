@@ -1,6 +1,6 @@
 'use strict';
 
-import Grocery from './data/Grocery';
+import Grocery from './Grocery';
 
 export default class ShoppingListEntry {
   #checked: boolean;

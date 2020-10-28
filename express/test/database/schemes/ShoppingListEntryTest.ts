@@ -2,9 +2,9 @@
 
 import test from 'ava';
 
-import Grocery from '../../src/classes/data/Grocery';
-import Section from '../../src/classes/data/Section';
-import ShoppingListEntry from '../../src/classes/ShoppingListEntry';
+import Grocery from '../../../src/database/schemes/Grocery';
+import Section from '../../../src/database/schemes/Section';
+import ShoppingListEntry from '../../../src/database/schemes/ShoppingListEntry';
 
 const tomato = new Grocery(11, 'Tomatoes', new Section(0, ''));
 
