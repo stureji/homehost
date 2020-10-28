@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router';
 import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
-import NotFound from '@/views/NotFound.vue';
 import ShoppingList from '@/views/ShoppingList.vue';
 import Recipes from '@/views/Recipes.vue';
 import Error from '@/views/Error.vue';
