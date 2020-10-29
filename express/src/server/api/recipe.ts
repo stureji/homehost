@@ -19,6 +19,25 @@ WHERE recipe_id = $1`;
 const GET_RECIPE_QUERY = 'SELECT recipe_name, instructions FROM recipe WHERE recipe_id = $1';
 const GET_ALL_RECIPE_QUERY = 'SELECT * FROM recipe';
 
+app.get('/api/recipe/all', async (req: any, res: any) => {
+  const response = new ServerResponse('GET', '/api/recipe/all');
+
+  try {
+    response.data = await pool.query(GET_ALL_RECIPE_QUERY).then((qres) => {
+      return qres.rows.map(r => {
+        return new RecipeSignature(r.recipe_id, r.recipe_name);
+      });
+    });
+  } catch (error) {
+    console.log(error);
+    if(error.code == 42501) {
+      response.status = 403;
+    }
+  }
+
+  res.status(response.status).json(response.json);
+});
+
 app.get('/api/recipe/:id', async (req: any, res: any) => {
   const id = req.params.id;
 
@@ -48,25 +67,6 @@ app.get('/api/recipe/:id', async (req: any, res: any) => {
       response.data = [];
       response.status = 401;
     }
-  } catch (error) {
-    console.log(error);
-    if(error.code == 42501) {
-      response.status = 403;
-    }
-  }
-
-  res.status(response.status).json(response.json);
-});
-
-app.get('/api/recipe/all', async (req: any, res: any) => {
-  const response = new ServerResponse('GET', '/api/recipe/all');
-
-  try {
-    response.data = await pool.query(GET_ALL_RECIPE_QUERY).then((qres) => {
-      return qres.rows.map(r => {
-        return new RecipeSignature(r.recipe_id, r.recipe_name);
-      });
-    });
   } catch (error) {
     console.log(error);
     if(error.code == 42501) {
