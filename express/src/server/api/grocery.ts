@@ -57,7 +57,7 @@ app.get('/api/grocery/:c', async(req: any, res: any) => {
    * history (i.e. is in database).
    */
   const c = req.params.c[0];
-  const response = new ServerResponse('GET' + '/api/grocery/' + c)
+  const response = new ServerResponse('GET', '/api/grocery/' + c);
 
   try {
     response.data = await pool.query(GET_GROCERY_BY_LETTER_QUERY, [c + '%']).then((qres) => {
