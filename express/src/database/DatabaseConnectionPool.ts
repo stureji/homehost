@@ -1,4 +1,3 @@
-import { response } from 'express';
 import { Pool, QueryResult } from 'pg';
 require('dotenv').config();
 

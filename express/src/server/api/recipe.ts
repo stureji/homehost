@@ -76,3 +76,34 @@ app.get('/api/recipe/:id', async (req: any, res: any) => {
 
   res.status(response.status).json(response.json);
 });
+
+interface SectionInstruction {
+  name: string,
+  sort: number
+}
+
+interface GroceryInstruction {
+  name: string,
+  section: number | SectionInstruction
+}
+
+interface IngredientInstruction {
+  grocery: number | GroceryInstruction,
+  amout: number,
+  unit: string
+}
+
+app.post('/api/recipe/add', async(req: any, res: any) => {
+  /**
+   * This API call is used to add a new recipe into the database. The post request either needs
+   * to contain an ID for exisiting ingredient, grocery, section etc OR provide all data necessary
+   * to create new entries of respective type.
+   *
+   * request body = {
+   *     "recipe_name": string
+   *     "ingredients": Array<number | { IngredientInstruction }>
+   * }
+   *
+   * If the request breaks this typing, an error will be thrown and BAD_REQUEST will be returned
+   */
+});
