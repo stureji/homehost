@@ -3,6 +3,7 @@
   <h2 v-if="loading">{{loading}}</h2>
   <div id="page-content" v-if="!loading && data">
     <h2 class="recipe-heading" @click="routeToAll()">{{ data.name }}</h2>
+    <p>{{ data.ingredients }}</p>
     <p>{{ data.instructions }}</p>
   </div>
 </div>
@@ -26,7 +27,7 @@ export default {
     const fetchData = () => {
       loading.value = true;
 
-      return fetch(process.env.VUE_APP_API + '/recipe/?id=' + recipeIdInRoute.value, {
+      return fetch(process.env.VUE_APP_API + '/recipe/' + recipeIdInRoute.value, {
         method: 'get',
         headers: {
           "content-type": "application/json"
@@ -40,7 +41,7 @@ export default {
 
         return res.json()
       }).then((json) => {
-        data.value = json.data;
+        data.value = json.data[0];
       }).catch((e) => {
         error.value = e;
         router.push({ name: 'Error', params: { status: error.value.status, message: error.value.message }});
