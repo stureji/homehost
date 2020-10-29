@@ -19,11 +19,13 @@ WHERE recipe_id = $1`;
 const GET_RECIPE_QUERY = 'SELECT recipe_name, instructions FROM recipe WHERE recipe_id = $1';
 const GET_ALL_RECIPE_QUERY = 'SELECT * FROM recipe';
 
-app.get('/api/recipe/', async (req: any, res: any) => {
-  const response = new ServerResponse('GET', '/api/recipe/');
+app.get('/api/recipe/:id', async (req: any, res: any) => {
+  const id = req.params.id;
+
+  const response = new ServerResponse('GET', '/api/recipe/' + id);
 
   try {
-    const listOfIngredientsByRecipeId = await pool.query(GET_INGREDIENT_LIST_QUERY, [1]).then((qres) => {
+    const listOfIngredientsByRecipeId = await pool.query(GET_INGREDIENT_LIST_QUERY, [id]).then((qres) => {
       return qres.rows.map(r => {
         const s = new Section(r.section_id, r.section_name, r.sorting_order);
         const g = new Grocery(r.grocery_id, r.grocery_name, s);
@@ -31,7 +33,7 @@ app.get('/api/recipe/', async (req: any, res: any) => {
       });
     });
 
-    const recipeFromQueryResults = await pool.query(GET_RECIPE_QUERY, [1]).then((qres) => {
+    const recipeFromQueryResults = await pool.query(GET_RECIPE_QUERY, [id]).then((qres) => {
       if(qres.rowCount > 0) {
         const r = qres.rows[0];
         return [new Recipe(r.recipe_id, r.recipe_name, listOfIngredientsByRecipeId, r.instructions)];
@@ -44,6 +46,7 @@ app.get('/api/recipe/', async (req: any, res: any) => {
       response.data = recipeFromQueryResults;
     } else {
       response.data = [];
+      response.status = 401;
     }
   } catch (error) {
     console.log(error);
