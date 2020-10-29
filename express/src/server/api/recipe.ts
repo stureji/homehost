@@ -8,7 +8,9 @@ import Ingredient from '../../database/schemes/Ingredient';
 import RecipeSignature from '../../database/schemes/RecipeSignature';
 const app = module.exports = express();
 
-const GET_INGREDIENT_LIST_QUERY = `SELECT section.section_id, section.section_name, section.sorting_order, grocery.grocery_id, ingredient.ingredient_id, grocery.grocery_name, ingredient_amount, ingredient_unit FROM ingredients
+const GET_INGREDIENT_LIST_QUERY = `SELECT
+section.section_id, section.section_name, section.sorting_order, grocery.grocery_id, ingredient.ingredient_id, grocery.grocery_name, ingredient_amount, ingredient_unit
+FROM ingredients
 INNER JOIN ingredient
 ON ingredients.ingredient_id = ingredient.ingredient_id
 INNER JOIN grocery

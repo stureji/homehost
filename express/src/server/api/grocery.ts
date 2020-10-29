@@ -7,12 +7,11 @@ import { QueryResult } from 'pg';
 import GrocerySignature from '../../database/schemes/GrocerySignature';
 const app = module.exports = express();
 
-const GET_ALL_GROCERY_QUERY = '' +
-'SELECT ' +
-'grocery_id, grocery_name, grocery.section_id, section_name, sorting_order ' +
-'FROM grocery ' +
-'INNER JOIN section ' +
-'ON grocery.section_id = section.section_id';
+const GET_ALL_GROCERY_QUERY = `SELECT
+grocery_id, grocery_name, grocery.section_id, section_name, sorting_order
+FROM grocery
+INNER JOIN section
+ON grocery.section_id = section.section_id`;
 
 const GET_GROCERY_BY_LETTER_QUERY = "SELECT * FROM grocery WHERE LOWER(grocery_name) LIKE $1 ORDER BY grocery_name";
 
@@ -51,11 +50,6 @@ app.get('/api/grocery/sectionless', async(req: any, res: any) => {
 });
 
 app.get('/api/grocery/:c', async(req: any, res: any) => {
-  /**
-   * In here I will fetch all grocery that begins with char c. Idea being that when a user wants to
-   * add grocery to their shopping list, it will show up auto-complete fashion when if it exists in
-   * history (i.e. is in database).
-   */
   const c = req.params.c[0];
   const response = new ServerResponse('GET', '/api/grocery/' + c);
 
