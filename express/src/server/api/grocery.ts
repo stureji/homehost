@@ -3,6 +3,7 @@ import { pool } from '../../database/DatabaseConnectionPool';
 import Grocery from '../../database/schemes/Grocery';
 import ServerResponse from '../ServerResponse';
 import Section from '../../database/schemes/Section';
+import { QueryResult } from 'pg';
 const app = module.exports = express();
 
 const GET_ALL_GROCERY_QUERY = '' +
@@ -15,26 +16,22 @@ const GET_ALL_GROCERY_QUERY = '' +
 app.get('/api/grocery/all', async (req: any, res: any) => {
   const response = new ServerResponse('GET', '/api/grocery/all');
 
-  response.data = await pool.connect().then((connection) => {
-    if(connection) {
-      const query = pool.query(GET_ALL_GROCERY_QUERY);
-      connection.release();
-      return query;
-    } else {
-      throw new Error('Could not connect to database.');
-    }
-  }).then((res) => {
-    if(res.rowCount > 0) {
-      return res.rows.map( r => {
-        return new Grocery(r.grocery_id, r.grocery_name, new Section(r.section_id, r.section_name));
+  try {
+    const result: QueryResult<any> = await pool.query(GET_ALL_GROCERY_QUERY);
+    if(result.rowCount > 0) {
+      response.data = result.rows.map(r => {
+        console.log(r)
+        return new Grocery(r.grocery_id, r.grocery_name, new Section(r.section_id, r.section_name, r.sorting_order));
       });
     } else {
-      return [];
+      response.data = [];
     }
-  }).catch((error) => {
-    response.error = error;
-    return [];
-  });
+  } catch (error) {
+    console.log(error);
+    if(error.code == 42501) {
+      response.status = 403;
+    }
+  }
 
   res.status(response.status).json(response.json);
 });
